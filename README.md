@@ -3,6 +3,7 @@
 ---
 
 - [ ] contacts
+- [ ] MyReads
 
 ---
 > Udacity React Nanogedree
