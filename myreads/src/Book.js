@@ -9,6 +9,7 @@ class Book extends Component {
   }
 
 
+
   render() {
     const {imageUrl, title, authors} = this.props
 
