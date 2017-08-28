@@ -2,8 +2,8 @@
 
 ---
 
+- [x] Contacts
 - [ ] MyReads
-- [ ] Contacts
 - [ ] Udaci-meals
 
 ---
