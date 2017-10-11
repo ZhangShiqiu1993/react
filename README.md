@@ -1,10 +1,3 @@
 # react
 
----
-
-- [x] Contacts
-- [ ] MyReads
-- [ ] Udaci-meals
-
----
-> Udacity React Nanogedree
+start to learn react
