@@ -4,22 +4,26 @@ import './index.css';
 // import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const people = [
-    {name: 'Michael'},
-    {name: 'Ryan'},
-    {name: 'Tyler'}
-]
-const element = React.createElement('div',
-    {className: "hello"},
-    people.map(person => (
-        React.createElement('li', {
-            key: person.name
-        }, person.name)
-    ))
-);
+class ContactList extends React.Component {
+    render() {
+        const people = [
+            {name: 'Michael'},
+            {name: 'Ryan'},
+            {name: 'Tyler'}
+        ]
+
+
+        return <ol>
+            {people.map( person => (
+                <li key={person.name}>{person.name}</li>
+            ))}
+        </ol>
+
+    }
+}
 
 ReactDOM.render(
-    element,
+    <ContactList/>,
     document.getElementById('root')
 )
 
