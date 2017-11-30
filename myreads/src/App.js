@@ -15,14 +15,18 @@ class BooksApp extends React.Component {
         });
     }
 
-    move(book) {
-        console.log("move");
+    move(bookId, current, next) {
+        if (current === next || next === 'none') {
+            return
+        }
+        BooksAPI.get(bookId).then((book) => {
+            BooksAPI.update(book, next)
+        });
+
     }
 
     render() {
-
         const {books, showSearchPage} = this.state;
-        console.log(books);
         let currentlyReading = books.filter((book) => book.shelf === "currentlyReading");
         let wantToRead = books.filter((book) => book.shelf === "wantToRead");
         let read = books.filter((book) => book.shelf === "read");
@@ -64,12 +68,12 @@ class BooksApp extends React.Component {
                                             {currentlyReading.map((book) => (
                                                 <li key={book.id}>
                                                     <Book
+                                                        bookId={book.id}
+                                                        shelf={book.shelf}
                                                         backgroundImage={book.imageLinks.thumbnail}
                                                         title={book.title}
                                                         author={book.authors[0]}
-                                                        moveToWantToRead={this.move}
-                                                        moveToRead={this.move}
-                                                        moveToCurrentlyReading={this.move}
+                                                        move={this.move}
                                                     />
                                                 </li>
                                             ))}
@@ -83,12 +87,12 @@ class BooksApp extends React.Component {
                                             {wantToRead.map((book) => (
                                                 <li key={book.id}>
                                                     <Book
+                                                        bookId={book.id}
+                                                        shelf={book.shelf}
                                                         backgroundImage={book.imageLinks.thumbnail}
                                                         title={book.title}
                                                         author={book.authors[0]}
-                                                        moveToWantToRead={this.move}
-                                                        moveToRead={this.move}
-                                                        moveToCurrentlyReading={this.move}
+                                                        move={this.move}
                                                     />
                                                 </li>
                                             ))}
@@ -102,12 +106,12 @@ class BooksApp extends React.Component {
                                             {read.map((book) => (
                                                 <li key={book.id}>
                                                     <Book
+                                                        bookId={book.id}
+                                                        shelf={book.shelf}
                                                         backgroundImage={book.imageLinks.thumbnail}
                                                         title={book.title}
                                                         author={book.authors[0]}
-                                                        moveToWantToRead={this.move}
-                                                        moveToRead={this.move}
-                                                        moveToCurrentlyReading={this.move}
+                                                        move={this.move}
                                                     />
                                                 </li>
                                             ))}
