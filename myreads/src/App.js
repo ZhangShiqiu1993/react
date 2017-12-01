@@ -15,21 +15,32 @@ class BooksApp extends React.Component {
         });
     }
 
+
     move(bookId, current, next) {
         if (current === next || next === 'none') {
             return
         }
-        BooksAPI.get(bookId).then((book) => {
-            BooksAPI.update(book, next)
-        });
-
+        let books = this.state.books;
+        console.log(books)
+        for (let book of this.state.books) {
+            console.log(book)
+            if (book.id === bookId) {
+                console.log(1)
+                BooksAPI.update(book, next);
+                console.log(2)
+                book.shelf = next;
+                console.log(3)
+                this.setState(state => ({
+                    books: state.books.filter((b) => b.id !== bookId).contact([book])
+                }))
+                break
+            }
+        }
     }
 
     render() {
         const {books, showSearchPage} = this.state;
-        let currentlyReading = books.filter((book) => book.shelf === "currentlyReading");
-        let wantToRead = books.filter((book) => book.shelf === "wantToRead");
-        let read = books.filter((book) => book.shelf === "read");
+
 
         return (
             <div className="app">
@@ -61,63 +72,20 @@ class BooksApp extends React.Component {
                         </div>
                         <div className="list-books-content">
                             <div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Currently Reading</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {currentlyReading.map((book) => (
-                                                <li key={book.id}>
-                                                    <Book
-                                                        bookId={book.id}
-                                                        shelf={book.shelf}
-                                                        backgroundImage={book.imageLinks.thumbnail}
-                                                        title={book.title}
-                                                        author={book.authors[0]}
-                                                        move={this.move}
-                                                    />
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Want to Read</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {wantToRead.map((book) => (
-                                                <li key={book.id}>
-                                                    <Book
-                                                        bookId={book.id}
-                                                        shelf={book.shelf}
-                                                        backgroundImage={book.imageLinks.thumbnail}
-                                                        title={book.title}
-                                                        author={book.authors[0]}
-                                                        move={this.move}
-                                                    />
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
-                                <div className="bookshelf">
-                                    <h2 className="bookshelf-title">Read</h2>
-                                    <div className="bookshelf-books">
-                                        <ol className="books-grid">
-                                            {read.map((book) => (
-                                                <li key={book.id}>
-                                                    <Book
-                                                        bookId={book.id}
-                                                        shelf={book.shelf}
-                                                        backgroundImage={book.imageLinks.thumbnail}
-                                                        title={book.title}
-                                                        author={book.authors[0]}
-                                                        move={this.move}
-                                                    />
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                </div>
+                                <Book
+                                    books={books}
+                                    bookshelf="currentlyReading"
+                                    shelfTitle="Currently Reading"/>
+
+                                <Book
+                                    books={books}
+                                    bookshelf="wantToRead"
+                                    shelfTitle="Want to Read"/>
+                                <Book
+                                    books={books}
+                                    bookshelf="read"
+                                    shelfTitle="Read"/>
+
                             </div>
                         </div>
                         <div className="open-search">
