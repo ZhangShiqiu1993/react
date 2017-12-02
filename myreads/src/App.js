@@ -16,31 +16,19 @@ class BooksApp extends React.Component {
     }
 
 
-    move(bookId, current, next) {
-        if (current === next || next === 'none') {
+    move = (book, next) => {
+        if (next === 'none') {
             return
         }
-        let books = this.state.books;
-        console.log(books)
-        for (let book of this.state.books) {
-            console.log(book)
-            if (book.id === bookId) {
-                console.log(1)
-                BooksAPI.update(book, next);
-                console.log(2)
-                book.shelf = next;
-                console.log(3)
-                this.setState(state => ({
-                    books: state.books.filter((b) => b.id !== bookId).contact([book])
-                }))
-                break
-            }
-        }
-    }
+        BooksAPI.update(book, next);
+        book.shelf = next;
+        this.setState((state) => ({
+            books: state.books.filter((b) => b.id !== book.id).concat([book])
+        }))
+    };
 
     render() {
         const {books, showSearchPage} = this.state;
-
 
         return (
             <div className="app">
@@ -75,16 +63,19 @@ class BooksApp extends React.Component {
                                 <Book
                                     books={books}
                                     bookshelf="currentlyReading"
-                                    shelfTitle="Currently Reading"/>
+                                    shelfTitle="Currently Reading"
+                                    moveBook={this.move}/>
 
                                 <Book
                                     books={books}
                                     bookshelf="wantToRead"
-                                    shelfTitle="Want to Read"/>
+                                    shelfTitle="Want to Read"
+                                    moveBook={this.move}/>
                                 <Book
                                     books={books}
                                     bookshelf="read"
-                                    shelfTitle="Read"/>
+                                    shelfTitle="Read"
+                                    moveBook={this.move}/>
 
                             </div>
                         </div>
