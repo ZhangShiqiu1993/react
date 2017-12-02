@@ -5,12 +5,13 @@ class Book extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         bookshelf: PropTypes.string.isRequired,
-        shelfTitle: PropTypes.string.isRequired
+        shelfTitle: PropTypes.string.isRequired,
+        moveBook: PropTypes.func.isRequired
     };
 
 
     render() {
-        const {books, bookshelf, shelfTitle} = this.props;
+        const {books, bookshelf, shelfTitle, moveBook} = this.props;
         let bookList = books.filter((book) => book.shelf === bookshelf);
         return (
             <div className="bookshelf">
@@ -23,7 +24,7 @@ class Book extends Component {
                                     <div className="book-top">
                                         <div className="book-cover" style={{ width: 128, height: 180, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                         <div className="book-shelf-changer">
-                                            <select>
+                                            <select onChange={(e) => moveBook(book, e.target.value)} value={book.shelf}>
                                                 <option value="none" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
