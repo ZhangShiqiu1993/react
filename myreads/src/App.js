@@ -2,13 +2,13 @@ import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 import Book from "./Book";
+import {Route} from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 
 class BooksApp extends React.Component {
     state = {
         books: [],
-        showSearchPage: true,
         query: ""
     };
 
@@ -39,7 +39,7 @@ class BooksApp extends React.Component {
     };
 
     render() {
-        const {books, showSearchPage, query} = this.state;
+        const {books, query} = this.state;
 
         let showingBooks;
         if (query) {
@@ -65,7 +65,7 @@ class BooksApp extends React.Component {
 
         return (
             <div className="app">
-                {/*{showSearchPage ? (*/}
+                <Route exact path="/search" render={() =>(
                     <div className="search-books">
                         <div className="search-books-bar">
                             <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
@@ -83,7 +83,8 @@ class BooksApp extends React.Component {
                             <ol className="books-grid"></ol>
                         </div>
                     </div>
-                // ) : (
+                )} />
+                <Route path="/" render={({history}) =>(
                     <div className="list-books">
                         <div className="list-books-title">
                             <h1>MyReads</h1>
@@ -113,7 +114,7 @@ class BooksApp extends React.Component {
                             <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
                         </div>
                     </div>
-                // )}
+                )} />
             </div>
         )
     }
