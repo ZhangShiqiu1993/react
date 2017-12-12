@@ -1,15 +1,13 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import Book from "./Book";
 import {Route} from 'react-router-dom';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
+import ListBooks from './ListBooks';
+import SearchBooks from "./SearchBooks";
 
 class BooksApp extends React.Component {
     state = {
         books: [],
-        query: ""
     };
 
     componentDidMount() {
@@ -18,17 +16,13 @@ class BooksApp extends React.Component {
         });
     }
 
-    updateQuery = (query) => {
-        this.setState({query : query.trim()})
-    };
 
-    clearQuery = () => {
-        this.setState({query: ""})
-    };
-
-
-    move = (book, next) => {
+    moveBook = (book, next) => {
         if (next === 'none') {
+            BooksAPI.update(book, next);
+            this.setState((state) => ({
+                books: state.books.filter((b) => b.id !== book.id)
+            }));
             return
         }
         BooksAPI.update(book, next);
@@ -39,81 +33,24 @@ class BooksApp extends React.Component {
     };
 
     render() {
-        const {books, query} = this.state;
-
-        let showingBooks;
-        if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i');
-            showingBooks = books.filter((book) => {
-                console.log(book.title)
-                if (match.test(book.title)) {
-                    return true;
-                }
-                for (let author of book.authors) {
-                    console.log(author)
-                    if (match.test(author)) {
-                        return true;
-                    }
-                }
-                return false;
-            });
-        } else {
-            showingBooks = books;
-        }
-
-        showingBooks.sort(sortBy('title'));
+        const {books} = this.state;
 
         return (
             <div className="app">
-                <Route exact path="/search" render={() =>(
-                    <div className="search-books">
-                        <div className="search-books-bar">
-                            <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-                            <div className="search-books-input-wrapper">
-                                <input
-                                    type="text"
-                                    placeholder="Search by title or author"
-                                    value={query}
-                                    onChange={(event) => this.updateQuery(event.target.value)}
-                                />
+                <Route exact path="/" render={() =>(
+                    <ListBooks
+                        books={books}
+                        onMoveBook={this.moveBook}
+                    /> )}
+                />
 
-                            </div>
-                        </div>
-                        <div className="search-books-results">
-                            <ol className="books-grid"></ol>
-                        </div>
-                    </div>
-                )} />
-                <Route path="/" render={({history}) =>(
-                    <div className="list-books">
-                        <div className="list-books-title">
-                            <h1>MyReads</h1>
-                        </div>
-                        <div className="list-books-content">
-                            <div>
-                                <Book
-                                    books={showingBooks}
-                                    bookshelf="currentlyReading"
-                                    shelfTitle="Currently Reading"
-                                    moveBook={this.move}/>
-
-                                <Book
-                                    books={showingBooks}
-                                    bookshelf="wantToRead"
-                                    shelfTitle="Want to Read"
-                                    moveBook={this.move}/>
-                                <Book
-                                    books={showingBooks}
-                                    bookshelf="read"
-                                    shelfTitle="Read"
-                                    moveBook={this.move}/>
-
-                            </div>
-                        </div>
-                        <div className="open-search">
-                            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-                        </div>
-                    </div>
+                <Route path="/search" render={({history}) =>(
+                    <SearchBooks
+                        onAddBook={(book, next) => {
+                            this.moveBook(book, next);
+                            // history.push('/');
+                        }}
+                    />
                 )} />
             </div>
         )
