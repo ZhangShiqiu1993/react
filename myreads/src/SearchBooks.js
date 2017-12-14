@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as BooksAPI from "./BooksAPI";
 import {Link} from 'react-router-dom';
 import {DebounceInput} from 'react-debounce-input';
+import Book from "./Book";
 
 class SearchBooks extends Component {
     state = {
@@ -25,7 +26,12 @@ class SearchBooks extends Component {
     addBook = (book, shelf) => {
         this.props.onAddBook(book, shelf);
         this.setState((state) => ({
-            search: state.search.filter((b) => b.id !== book.id)
+            search: state.search.map((b) => {
+                if (b.id === book.id) {
+                    book.shelf = shelf
+                }
+                return b;
+            })
         }));
     }
 
@@ -49,30 +55,7 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid">
-                        {search.length !== 0 && search.map((book) => (
-                            <li key={book.id}>
-                                <div className="book">
-                                    <div className="book-top">
-                                        {book.hasOwnProperty("imageLinks") && (
-                                            <div className="book-cover" style={{ width: 128, height: 180, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                        )}
-                                        <div className="book-shelf-changer">
-                                            <select onChange={(e) => this.addBook(book, e.target.value)} value="none">
-                                                <option value="none" disabled>Move to...</option>
-                                                <option value="currentlyReading">Currently Reading</option>
-                                                <option value="wantToRead">Want to Read</option>
-                                                <option value="read">Read</option>
-                                                <option value="none">None</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.hasOwnProperty("authors") ? book.authors.join(", ") : ""}</div>
-                                </div>
-                            </li>
-                        ))}
-                    </ol>
+                    <Book books={search} moveBook={this.addBook}/>
                 </div>
             </div>
         )
