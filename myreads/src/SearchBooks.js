@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as BooksAPI from "./BooksAPI";
 import {Link} from 'react-router-dom';
+import {DebounceInput} from 'react-debounce-input';
 
 class SearchBooks extends Component {
     state = {
@@ -15,19 +16,11 @@ class SearchBooks extends Component {
 
     updateQuery = (query) => {
         BooksAPI.search(query).then((result) => {
-            if (typeof result === 'undefined' || result.hasOwnProperty("error")) {
-                this.setState({
-                    query: "",
-                    search: []
-                })
-            } else {
-                this.setState({
-                    query: query.trim(),
-                    search: result
-                })
-            }
+            (typeof result === 'undefined' || result.hasOwnProperty("error")) ?
+                this.setState({query: "", search: []}) :
+                this.setState({query: query.trim(), search: result})
         });
-    };
+    }
 
     addBook = (book, shelf) => {
         this.props.onAddBook(book, shelf);
@@ -44,11 +37,13 @@ class SearchBooks extends Component {
                 <div className="search-books-bar">
                     <Link to="/" className="close-search" >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input
+                        <DebounceInput
+                            debounceTimeout={200}
+                            minLength={1}
                             type="text"
                             placeholder="Search by title or author"
                             value={query}
-                            onChange={(event) => this.updateQuery(event.target.value)}
+                            onChange={(e) => this.updateQuery(e.target.value)}
                         />
 
                     </div>
@@ -73,10 +68,7 @@ class SearchBooks extends Component {
                                         </div>
                                     </div>
                                     <div className="book-title">{book.title}</div>
-                                    {book.hasOwnProperty("authors") && (
-                                        <div className="book-authors">{book.authors.join(", ")}</div>
-                                    )}
-
+                                    <div className="book-authors">{book.hasOwnProperty("authors") ? book.authors.join(", ") : ""}</div>
                                 </div>
                             </li>
                         ))}
