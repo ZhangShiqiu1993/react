@@ -12,7 +12,8 @@ class SearchBooks extends Component {
     }
 
     static propsType = {
-        onAddBook : PropTypes.func.isRequired
+        onAddBook : PropTypes.func.isRequired,
+        books: PropTypes.object.isRequired
     }
 
     updateQuery = (query) => {
@@ -38,12 +39,14 @@ class SearchBooks extends Component {
 
     render() {
         const {query, search} = this.state;
+        const {books} = this.props;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link to="/" className="close-search" >Close</Link>
                     <div className="search-books-input-wrapper">
                         <DebounceInput
+                            autoFocus
                             debounceTimeout={200}
                             minLength={1}
                             type="text"
@@ -55,7 +58,10 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <Book books={search} moveBook={this.addBook}/>
+                    <Book books={search.map((b) => {
+                        b.shelf = books.hasOwnProperty(b.id) ? books[b.id].shelf : "none";
+                        return b;}
+                    )} moveBook={this.addBook}/>
                 </div>
             </div>
         )
