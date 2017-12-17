@@ -44,11 +44,14 @@ class BooksApp extends React.Component {
                     /> )}
                 />
 
-                <Route path="/search" render={({history}) =>(
+                <Route path="/search" render={() =>(
                     <SearchBooks
+                        books={books.reduce((d, curt) => {
+                            d[curt.id] = curt.shelf;
+                            return d;
+                        }, {})}
                         onAddBook={(book, next) => {
                             this.moveBook(book, next);
-                            // history.push('/');
                         }}
                     />
                 )} />
