@@ -17,18 +17,13 @@ class BooksApp extends React.Component {
     });
   }
 
-
-  moveBook = (book, next) => {
-    BooksAPI.update(book, next);
-    this.setState((state) => ({
-      books: state.books.filter((b) => b.id !== book.id)
-    }));
-    if (next !== 'none') {
-      book.shelf = next;
-      this.setState((state) => ({
-        books: state.books.concat([book])
+  moveBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf;
+      this.setState(state => ({
+        books: state.books.filter(b=> b.id !== book.id).concat([book])
       }))
-    }
+    })
   };
 
   render() {
