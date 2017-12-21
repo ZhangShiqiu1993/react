@@ -39,7 +39,7 @@ const initialCalendarState = {
     lunch: null,
     dinner: null,
   },
-}
+};
 
 function calendar(state = initialCalendarState, action) {
   const { day, recipe, meal} = action;
