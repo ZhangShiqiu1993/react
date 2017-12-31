@@ -4,7 +4,8 @@
 
 + [x] contacts
 + [x] myreads
-+ [ ] meal-planner
++ [x] meal-planner
++ [ ] readable
 
 ---
 
