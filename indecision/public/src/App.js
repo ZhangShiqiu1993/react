@@ -1,7 +1,11 @@
 console.log("running");
 
 // JSX 
-var template = <p>This is JSX from app.js</p>
+var template = React.createElement(
+    "h1",
+    { id: "xx" },
+    "Something new"
+);
 var appRoot = document.getElementById("app");
 
-ReactDom.render(template, appRoot);
+ReactDOM.render(template, appRoot);
