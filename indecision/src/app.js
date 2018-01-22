@@ -3,8 +3,8 @@ console.log("running");
 // JSX 
 var template = (
     <div>
-        <h1>Shiqiu</h1>
-        <p>This is some info</p>
+        <h1>Indecision App</h1>
+        <p>Put your life in the hands of a computer</p>
         <ol>
             <li>Item one</li>
             <li>Item two</li>
@@ -24,14 +24,14 @@ function getLocation(location) {
     }
 }
 
+let count = 0;
 const templateTwo = (
     <div>
-        <h1>{user.name ? user.name : "Anonymous"}</h1>
-        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-        {getLocation(user.location)}
+        <h1>Count : {count}</h1>
+        <button id="my-id" className="button">+1</button>
     </div>
 );
 
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

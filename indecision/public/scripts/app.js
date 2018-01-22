@@ -9,12 +9,12 @@ var template = React.createElement(
     React.createElement(
         "h1",
         null,
-        "Shiqiu"
+        "Indecision App"
     ),
     React.createElement(
         "p",
         null,
-        "This is some info"
+        "Put your life in the hands of a computer"
     ),
     React.createElement(
         "ol",
@@ -31,6 +31,41 @@ var template = React.createElement(
         )
     )
 );
+
+var user = {
+    name: "Andrew",
+    age: 26,
+    location: "Philadelphia"
+};
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            "p",
+            null,
+            "Location: ",
+            location
+        );
+    }
+}
+
+var count = 0;
+var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Count : ",
+        count
+    ),
+    React.createElement(
+        "button",
+        { id: "my-id", className: "button" },
+        "+1"
+    )
+);
+
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
