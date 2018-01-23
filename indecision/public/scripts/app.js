@@ -8,6 +8,15 @@ var app = {
   options: ['One', 'Two']
 };
 
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+  }
+};
+
 var template = React.createElement(
   "div",
   null,
@@ -42,7 +51,7 @@ var template = React.createElement(
   ),
   React.createElement(
     "form",
-    null,
+    { onSubmit: onFormSubmit },
     React.createElement("input", { type: "text", name: "option" }),
     React.createElement(
       "button",
