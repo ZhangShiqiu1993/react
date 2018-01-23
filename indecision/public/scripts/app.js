@@ -1,20 +1,30 @@
 "use strict";
 
-console.log("running");
+console.log("App is running");
 
-// JSX 
+var app = {
+  title: "Indecision App",
+  subtitle: "Put your life in the hands of a computer",
+  options: ['One', 'Two']
+};
+
 var template = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "Indecision App"
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    "p",
+    null,
+    app.subtitle
   ),
   React.createElement(
     "p",
     null,
-    "Put your life in the hands of a computer"
+    app.options.length > 0 ? "Here are your options" : "No options"
   ),
   React.createElement(
     "ol",
