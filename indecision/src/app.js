@@ -16,6 +16,10 @@ const onFormSubmit = (e) => {
   }
 };
 
+const onRemoveAll = (e) => {
+  app.options = [];
+  render();
+}
 
 const render = () => {
   const template = (
@@ -24,6 +28,7 @@ const render = () => {
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
       <p>{app.options.length}</p>
+      <button onClick={onRemoveAll}>Remove All</button>
       <ol>
         {app.options.map((item) => (
           <li key={item}>{item}</li>
