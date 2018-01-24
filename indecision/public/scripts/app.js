@@ -62,7 +62,10 @@ var Action = function (_React$Component2) {
         null,
         React.createElement(
           "button",
-          { onClick: this.handlePick },
+          {
+            onClick: this.handlePick,
+            disabled: !this.props.hasOptions
+          },
           "What should I do?"
         )
       );
@@ -75,21 +78,13 @@ var Action = function (_React$Component2) {
 var Options = function (_React$Component3) {
   _inherits(Options, _React$Component3);
 
-  function Options(props) {
+  function Options() {
     _classCallCheck(this, Options);
 
-    var _this3 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
-
-    _this3.handleRemoveAll = _this3.handleRemoveAll.bind(_this3);
-    return _this3;
+    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
   }
 
   _createClass(Options, [{
-    key: "handleRemoveAll",
-    value: function handleRemoveAll() {
-      console.log(this.props);
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -97,7 +92,7 @@ var Options = function (_React$Component3) {
         null,
         React.createElement(
           "button",
-          { onClick: this.handleRemoveAll },
+          { onClick: this.props.handleDeleteOptions },
           "Remove All"
         ),
         this.props.options.map(function (option) {
@@ -182,6 +177,7 @@ var IndecisionApp = function (_React$Component6) {
 
     var _this6 = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
+    _this6.handleDeleteOptions = _this6.handleDeleteOptions.bind(_this6);
     _this6.state = {
       options: ['Thing one', 'Thing two', 'Things three']
     };
@@ -189,6 +185,15 @@ var IndecisionApp = function (_React$Component6) {
   }
 
   _createClass(IndecisionApp, [{
+    key: "handleDeleteOptions",
+    value: function handleDeleteOptions() {
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var title = "Indecision";
@@ -198,8 +203,11 @@ var IndecisionApp = function (_React$Component6) {
         "div",
         null,
         React.createElement(Header, { title: title, subtitle: subtitle }),
-        React.createElement(Action, null),
-        React.createElement(Options, { options: this.state.options }),
+        React.createElement(Action, { hasOptions: this.state.options.length > 0 }),
+        React.createElement(Options, {
+          options: this.state.options,
+          handleDeleteOptions: this.handleDeleteOptions
+        }),
         React.createElement(AddOption, null)
       );
     }
