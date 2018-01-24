@@ -177,10 +177,15 @@ var AddOption = function (_React$Component5) {
 var IndecisionApp = function (_React$Component6) {
   _inherits(IndecisionApp, _React$Component6);
 
-  function IndecisionApp() {
+  function IndecisionApp(props) {
     _classCallCheck(this, IndecisionApp);
 
-    return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
+    var _this6 = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
+
+    _this6.state = {
+      options: ['Thing one', 'Thing two', 'Things three']
+    };
+    return _this6;
   }
 
   _createClass(IndecisionApp, [{
@@ -188,14 +193,13 @@ var IndecisionApp = function (_React$Component6) {
     value: function render() {
       var title = "Indecision";
       var subtitle = "Put your life in the hands of a computer";
-      var options = ['Thing one', 'Thing two', 'Things three'];
 
       return React.createElement(
         "div",
         null,
         React.createElement(Header, { title: title, subtitle: subtitle }),
         React.createElement(Action, null),
-        React.createElement(Options, { options: options }),
+        React.createElement(Options, { options: this.state.options }),
         React.createElement(AddOption, null)
       );
     }
