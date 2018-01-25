@@ -2,16 +2,18 @@ const localhost = "http://localhost:3001/";
 const headers = new Headers();
 headers.set('Authorization', "whatever-you-want");
 
-const getAllCategories = () => {
-  let url = localhost + "categories";
-  return fetch(url, {headers, method: 'GET'})
+export const getAllCategories = () =>
+  fetch(localhost + "categories", {headers, method: 'GET'})
     .then(res => res.json())
     .then(data => data.categories);
-};
 
-let data = getAllCategories();
+export const getPostsForCategory = (category) =>
+  fetch(localhost + `${category}/posts`, {headers, method: 'GET',})
+    .then(res => res.json());
 
-const getPosts = (category) => {
-  let url = localhost + `/${category}/posts`;
-  return fetch(url, {headers, method: 'GET',});
-};
+export const getAllPosts = () =>
+  fetch(localhost + 'posts', {headers, method: 'GET',})
+    .then(res => res.json());
+
+export const addAPost = (post) =>
+  fetch(localhost + 'posts', {headers, method: 'POST',})
