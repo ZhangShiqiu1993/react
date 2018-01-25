@@ -174,6 +174,7 @@ var IndecisionApp = function (_React$Component6) {
 
     _this6.handleDeleteOptions = _this6.handleDeleteOptions.bind(_this6);
     _this6.handlePick = _this6.handlePick.bind(_this6);
+    _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
     _this6.state = {
       options: ['Thing one', 'Thing two', 'Things three']
     };
@@ -181,6 +182,15 @@ var IndecisionApp = function (_React$Component6) {
   }
 
   _createClass(IndecisionApp, [{
+    key: "handleAddOption",
+    value: function handleAddOption(options) {
+      this.setState(function (preState) {
+        return {
+          options: preState.options.add(options)
+        };
+      });
+    }
+  }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {

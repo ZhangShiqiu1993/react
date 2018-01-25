@@ -75,9 +75,18 @@ class IndecisionApp extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
       options: ['Thing one', 'Thing two', 'Things three']
     }
+  }
+
+  handleAddOption(options) {
+    this.setState((preState) => {
+      return {
+        options:preState.options.add(options)
+      }
+    })
   }
 
   handleDeleteOptions() {
