@@ -126,10 +126,13 @@ var Option = function (_React$Component4) {
 var AddOption = function (_React$Component5) {
   _inherits(AddOption, _React$Component5);
 
-  function AddOption() {
+  function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    var _this5 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this5.handleAddOption = _this5.handleAddOption.bind(_this5);
+    return _this5;
   }
 
   _createClass(AddOption, [{
@@ -138,7 +141,7 @@ var AddOption = function (_React$Component5) {
       e.preventDefault();
       var option = e.target.elements.option.value;
       if (option) {
-        alert(option);
+        this.props.handleAddOption(option);
       }
     }
   }, {
@@ -184,11 +187,7 @@ var IndecisionApp = function (_React$Component6) {
   _createClass(IndecisionApp, [{
     key: "handleAddOption",
     value: function handleAddOption(options) {
-      this.setState(function (preState) {
-        return {
-          options: preState.options.add(options)
-        };
-      });
+      console.log(options);
     }
   }, {
     key: "handleDeleteOptions",
@@ -224,7 +223,9 @@ var IndecisionApp = function (_React$Component6) {
           options: this.state.options,
           handleDeleteOptions: this.handleDeleteOptions
         }),
-        React.createElement(AddOption, null)
+        React.createElement(AddOption, {
+          handleAddOption: this.handleAddOption()
+        })
       );
     }
   }]);

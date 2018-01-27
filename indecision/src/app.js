@@ -50,11 +50,15 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+  }
   handleAddOption(e) {
     e.preventDefault();
     const option = e.target.elements.option.value;
     if (option) {
-      alert(option);
+      this.props.handleAddOption(option);
     }
   }
 
@@ -82,11 +86,7 @@ class IndecisionApp extends React.Component {
   }
 
   handleAddOption(options) {
-    this.setState((preState) => {
-      return {
-        options:preState.options.add(options)
-      }
-    })
+    console.log(options);
   }
 
   handleDeleteOptions() {
@@ -118,7 +118,9 @@ class IndecisionApp extends React.Component {
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
         />
-        <AddOption/>
+        <AddOption
+          handleAddOption={this.handleAddOption()}
+        />
       </div>
     );
   }
