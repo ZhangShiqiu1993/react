@@ -186,8 +186,12 @@ var IndecisionApp = function (_React$Component6) {
 
   _createClass(IndecisionApp, [{
     key: "handleAddOption",
-    value: function handleAddOption(options) {
-      console.log(options);
+    value: function handleAddOption(option) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.concat(option)
+        };
+      });
     }
   }, {
     key: "handleDeleteOptions",
