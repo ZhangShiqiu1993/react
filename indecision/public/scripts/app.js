@@ -180,7 +180,7 @@ var IndecisionApp = function (_React$Component6) {
     _this6.handlePick = _this6.handlePick.bind(_this6);
     _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
     _this6.state = {
-      options: ['Thing one', 'Thing two', 'Things three']
+      options: []
     };
     return _this6;
   }
