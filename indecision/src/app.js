@@ -59,6 +59,7 @@ class AddOption extends React.Component {
     const option = e.target.elements.option.value;
     if (option) {
       this.props.handleAddOption(option);
+      e.target.elements.option.value = "";
     }
   }
 

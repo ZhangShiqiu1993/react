@@ -142,6 +142,7 @@ var AddOption = function (_React$Component5) {
       var option = e.target.elements.option.value;
       if (option) {
         this.props.handleAddOption(option);
+        e.target.elements.option.value = "";
       }
     }
   }, {
@@ -228,7 +229,7 @@ var IndecisionApp = function (_React$Component6) {
           handleDeleteOptions: this.handleDeleteOptions
         }),
         React.createElement(AddOption, {
-          handleAddOption: this.handleAddOption()
+          handleAddOption: this.handleAddOption
         })
       );
     }
