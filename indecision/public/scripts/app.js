@@ -17,12 +17,16 @@ var Header = function Header(props) {
       null,
       props.title
     ),
-    React.createElement(
+    props.subtitle && React.createElement(
       "h2",
       null,
       props.subtitle
     )
   );
+};
+
+Header.defaultProps = {
+  title: 'Indecision'
 };
 
 var Action = function Action(props) {
@@ -169,7 +173,6 @@ var IndecisionApp = function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var title = "Indecision";
       var subtitle = "Put your life in the hands of a computer";
 
       return React.createElement(
