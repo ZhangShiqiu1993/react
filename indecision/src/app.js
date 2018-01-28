@@ -29,7 +29,13 @@ const Options = (props) => {
     <div>
       <button onClick={props.handleDeleteOptions}>Remove All</button>
       {
-        props.options.map((option) => <Option key={option} optionText={option} />)
+        props.options.map((option) => (
+          <Option
+            key={option}
+            optionText={option}
+            handleDeleteOption={props.handleDeleteOption}
+          />
+        ))
       }
     </div>
   );
@@ -39,6 +45,7 @@ const Option = (props) => {
   return (
     <div>
       {props.optionText}
+      <button onClick={() => props.handleDeleteOption(props.optionText)}>remove</button>
     </div>
   );
 };
@@ -94,8 +101,10 @@ class IndecisionApp extends React.Component {
   }
 
   handleDeleteOptions() {this.setState(() => ({options: []}))}
-  handleDeleteOption(option) {
-    console.log('hdo', option)
+  handleDeleteOption(optionToRemove) {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => option !== optionToRemove)
+    }));
   }
 
   handlePick() {
@@ -117,6 +126,7 @@ class IndecisionApp extends React.Component {
         <Options
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption
           handleAddOption={this.handleAddOption}

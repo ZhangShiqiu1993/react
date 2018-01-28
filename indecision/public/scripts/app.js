@@ -54,7 +54,11 @@ var Options = function Options(props) {
       "Remove All"
     ),
     props.options.map(function (option) {
-      return React.createElement(Option, { key: option, optionText: option });
+      return React.createElement(Option, {
+        key: option,
+        optionText: option,
+        handleDeleteOption: props.handleDeleteOption
+      });
     })
   );
 };
@@ -63,7 +67,14 @@ var Option = function Option(props) {
   return React.createElement(
     "div",
     null,
-    props.optionText
+    props.optionText,
+    React.createElement(
+      "button",
+      { onClick: function onClick() {
+          return props.handleDeleteOption(props.optionText);
+        } },
+      "remove"
+    )
   );
 };
 
@@ -160,8 +171,14 @@ var IndecisionApp = function (_React$Component2) {
     }
   }, {
     key: "handleDeleteOption",
-    value: function handleDeleteOption(option) {
-      console.log('hdo', option);
+    value: function handleDeleteOption(optionToRemove) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return option !== optionToRemove;
+          })
+        };
+      });
     }
   }, {
     key: "handlePick",
@@ -185,7 +202,8 @@ var IndecisionApp = function (_React$Component2) {
         }),
         React.createElement(Options, {
           options: this.state.options,
-          handleDeleteOptions: this.handleDeleteOptions
+          handleDeleteOptions: this.handleDeleteOptions,
+          handleDeleteOption: this.handleDeleteOption
         }),
         React.createElement(AddOption, {
           handleAddOption: this.handleAddOption
