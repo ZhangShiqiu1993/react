@@ -89,9 +89,7 @@ var AddOption = function (_React$Component) {
       var option = e.target.elements.option.value.trim();
       var error = this.props.handleAddOption(option);
       this.setState(function () {
-        return {
-          error: error
-        };
+        return { error: error };
       });
     }
   }, {
@@ -149,18 +147,14 @@ var IndecisionApp = function (_React$Component2) {
       }
 
       this.setState(function (prevState) {
-        return {
-          options: prevState.options.concat(option)
-        };
+        return { options: prevState.options.concat(option) };
       });
     }
   }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {
-        return {
-          options: []
-        };
+        return { options: [] };
       });
     }
   }, {
@@ -201,4 +195,4 @@ IndecisionApp.defaultProps = {
   options: []
 };
 
-ReactDOM.render(React.createElement(IndecisionApp, { options: ['Devils Den', "Second"] }), document.getElementById('app'));
+ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));
