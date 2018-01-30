@@ -153,7 +153,7 @@ var IndecisionApp = function (_React$Component2) {
     _this2.handlePick = _this2.handlePick.bind(_this2);
     _this2.handleAddOption = _this2.handleAddOption.bind(_this2);
     _this2.state = {
-      options: props.options
+      options: []
     };
     return _this2;
   }
@@ -252,9 +252,5 @@ var IndecisionApp = function (_React$Component2) {
 
   return IndecisionApp;
 }(React.Component);
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));
