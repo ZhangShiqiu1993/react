@@ -152,7 +152,12 @@ var IndecisionApp = function (_React$Component2) {
   _createClass(IndecisionApp, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("mount");
+      var json = localStorage.getItem('options');
+      var options = JSON.parse(json);
+
+      this.setState(function () {
+        return { options: options };
+      });
     }
   }, {
     key: "componentDidUpdate",
