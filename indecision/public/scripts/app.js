@@ -150,6 +150,21 @@ var IndecisionApp = function (_React$Component2) {
   }
 
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("mount");
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log("update");
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("unmount");
+    }
+  }, {
     key: "handleAddOption",
     value: function handleAddOption(option) {
       if (!option) {
