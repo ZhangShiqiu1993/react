@@ -6,3 +6,4 @@ node_modules/
 reactnd-contacts-server/*
 *.zip
 yarn.lock
+npm-debug.log
