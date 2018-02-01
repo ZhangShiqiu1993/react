@@ -8,12 +8,23 @@ export const getAllCategories = () =>
     .then(data => data.categories);
 
 export const getPostsForCategory = (category) =>
-  fetch(localhost + `${category}/posts`, {headers, method: 'GET',})
+  fetch(localhost + `${category}/posts`, {headers, method: 'GET'})
     .then(res => res.json());
 
 export const getAllPosts = () =>
-  fetch(localhost + 'posts', {headers, method: 'GET',})
+  fetch(localhost + 'posts', {headers, method: 'GET'})
     .then(res => res.json());
 
 export const addAPost = (post) =>
-  fetch(localhost + 'posts', {headers, method: 'POST',})
+  // TODO
+  fetch(localhost + 'posts', {headers, method: 'POST'});
+
+export const getPostDetail = (id) =>
+  fetch(localhost + `posts/${id}`, {headers, method: 'GET'});
+
+export const voteOnAPost = (id) =>
+  // TODO
+  fetch(localhost + `posts/${id}`, {
+    headers,
+    method: 'POST',
+  })
