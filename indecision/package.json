@@ -19,6 +19,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "validator": "^9.4.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
