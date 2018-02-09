@@ -5,16 +5,9 @@ import Action from './Action';
 import Options from './Options';
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.state = {
-      options: []
-    }
-  }
+  state = {
+    options: []
+  };
 
   componentDidMount() {
     try {
@@ -38,7 +31,7 @@ class IndecisionApp extends React.Component {
     console.log("unmount");
   }
 
-  handleAddOption(option) {
+  handleAddOption = (option) => {
     if (!option) {
       return "Enter valid value to add item";
     } else if (this.state.options.indexOf(option) > -1) {
@@ -48,14 +41,14 @@ class IndecisionApp extends React.Component {
     this.setState((prevState) => ({options: prevState.options.concat(option)}));
   }
 
-  handleDeleteOptions() {this.setState(() => ({options: []}))}
-  handleDeleteOption(optionToRemove) {
+  handleDeleteOptions  = () => {this.setState(() => ({options: []}))}
+  handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => ({
       options: prevState.options.filter((option) => option !== optionToRemove)
     }));
   }
 
-  handlePick() {
+  handlePick = () => {
     const randNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randNum];
     console.log(option);
