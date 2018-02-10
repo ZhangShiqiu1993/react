@@ -33,6 +33,9 @@ class IndecisionApp extends React.Component {
     console.log("unmount");
   }
 
+  handleClearSelectedOption = () => {
+    this.setState({selectedOption:undefined});
+  };
   handleAddOption = (option) => {
     if (!option) {
       return "Enter valid value to add item";
@@ -42,20 +45,16 @@ class IndecisionApp extends React.Component {
 
     this.setState((prevState) => ({options: prevState.options.concat(option)}));
   }
-
-  handleDeleteOptions  = () => {this.setState(() => ({options: []}))}
+  handleDeleteOptions  = () => {this.setState({options: []})}
   handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => ({
       options: prevState.options.filter((option) => option !== optionToRemove)
     }));
-  }
-
+  };
   handlePick = () => {
     const randNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randNum];
-    this.setState(() => ({
-      selectedOption:option
-    }));
+    this.setState({selectedOption:option});
   };
 
   render() {
