@@ -7,7 +7,8 @@ import OptionalModal from './OptionModal';
 
 class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   };
 
   componentDidMount() {
@@ -73,7 +74,9 @@ class IndecisionApp extends React.Component {
         <AddOption
           handleAddOption={this.handleAddOption}
         />
-        <OptionalModal/>
+        <OptionalModal
+          selectedOption={this.state.selectedOption}
+        />
       </div>
     );
   }
