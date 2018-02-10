@@ -53,8 +53,10 @@ class IndecisionApp extends React.Component {
   handlePick = () => {
     const randNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randNum];
-    console.log(option);
-  }
+    this.setState(() => ({
+      selectedOption:option
+    }));
+  };
 
   render() {
     const subtitle= "Put your life in the hands of a computer";
