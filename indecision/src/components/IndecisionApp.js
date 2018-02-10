@@ -77,6 +77,7 @@ class IndecisionApp extends React.Component {
         />
         <OptionalModal
           selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
         />
       </div>
     );

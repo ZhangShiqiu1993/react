@@ -8,6 +8,7 @@ const OptionalModal = (props) => (
   >
     <h3>selected option</h3>
     {props.selectedOption &&<p>{props.selectedOption}</p>}
+    <button onClick={props.handleClearSelectedOption}>Okay</button>
   </Modal>
 );
 
