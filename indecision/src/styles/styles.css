@@ -2,12 +2,14 @@ html {
   font-size: 62.5%; }
 
 body {
+  background: #333745;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem; }
 
 .container {
   max-width: 60rem;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 1.6rem; }
 
 .header {
   background: #20222b;
