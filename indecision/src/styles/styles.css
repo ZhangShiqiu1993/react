@@ -91,7 +91,8 @@ button:disabled {
   color: white;
   font-weight: 500;
   font-size: 2rem;
-  margin: 0; }
+  margin: 0;
+  word-break: break-all; }
 
 .add-option-error {
   color: #a5afd7;
@@ -111,5 +112,37 @@ button:disabled {
   margin-right: 1.2rem;
   color: #a5afd7;
   padding: 1.2rem; }
+
+.ReactModalPortal > div {
+  opacity: 0; }
+
+.ReactModalPortal .ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 200ms ease-in-out; }
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1; }
+
+.ReactModalPortal .ReactModal__Overlay--before-colse {
+  opacity: 0; }
+
+.modal {
+  background: #464b5e;
+  color: white;
+  max-width: 30rem;
+  outline: none;
+  padding: 3.2rem;
+  text-align: center; }
+
+.modal__title {
+  margin: 0 0 1.6rem 0; }
+
+.modal__body {
+  word-break: break-all;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 0 3.2rem 0; }
 
 /*# sourceMappingURL=styles.css.map */
