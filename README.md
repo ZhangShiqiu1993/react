@@ -7,7 +7,7 @@
 + [x] meal-planner
 + [x] indecision app
 + [x] portfolio app
-+ [ ] expensify app
++ [x] expensify app
 + [ ] readable
 
 ---
