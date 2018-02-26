@@ -5,7 +5,7 @@ const headers = new Headers({
   'Content-Type': 'application/json'
 });
 
-export const getAllCategories = () =>
+export const getCategories = () =>
   fetch(`${server}/categories`, {headers, method: 'GET'})
     .then(res => res.json())
     .then(data => data.categories);
@@ -14,15 +14,15 @@ export const getPostsByCategory = (category) =>
   fetch(`${server}/${category}/posts`, {headers, method: 'GET'})
     .then(res => res.json());
 
-export const getAllPosts = () =>
+export const getPosts = () =>
   fetch(`${server}/posts`, {headers, method: 'GET'})
     .then(res => res.json());
 
-export const addAPost = (post) =>
+export const addPost = (post) =>
   fetch(`${server}/posts`, {headers, method: 'POST', body: JSON.stringify(post)})
     .then(res => res.json());
 
-export const getPostDetail = (id) =>
+export const getPostByID = (id) =>
   fetch(`${server}/posts/${id}`, {headers, method: 'GET'})
     .then(res => res.json());
 
@@ -46,7 +46,7 @@ export const addComment = (comment) =>
   fetch(`${server}/comments`, {headers, method: 'POST', body: JSON.stringify(comment)})
     .then(res => res.json());
 
-export const getCommentDetail = (id) =>
+export const getCommentByID = (id) =>
   fetch(`${server}/comments/${id}`, {headers, method: 'GET'})
     .then(res => res.json());
 
