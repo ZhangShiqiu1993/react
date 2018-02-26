@@ -1,30 +1,63 @@
-const localhost = "http://localhost:3001/";
-const headers = new Headers();
-headers.set('Authorization', "whatever-you-want");
+const server = "http://localhost:3001";
+const headers = new Headers({
+  Authorization: "whatever-you-want",
+  Accept: 'application/json',
+  'Content-Type': 'application/json'
+});
 
 export const getAllCategories = () =>
-  fetch(localhost + "categories", {headers, method: 'GET'})
+  fetch(`${server}/categories`, {headers, method: 'GET'})
     .then(res => res.json())
     .then(data => data.categories);
 
-export const getPostsForCategory = (category) =>
-  fetch(localhost + `${category}/posts`, {headers, method: 'GET'})
+export const getPostsByCategory = (category) =>
+  fetch(`${server}/${category}/posts`, {headers, method: 'GET'})
     .then(res => res.json());
 
 export const getAllPosts = () =>
-  fetch(localhost + 'posts', {headers, method: 'GET'})
+  fetch(`${server}/posts`, {headers, method: 'GET'})
     .then(res => res.json());
 
 export const addAPost = (post) =>
-  // TODO
-  fetch(localhost + 'posts', {headers, method: 'POST'});
+  fetch(`${server}/posts`, {headers, method: 'POST', body: JSON.stringify(post)})
+    .then(res => res.json());
 
 export const getPostDetail = (id) =>
-  fetch(localhost + `posts/${id}`, {headers, method: 'GET'});
+  fetch(`${server}/posts/${id}`, {headers, method: 'GET'})
+    .then(res => res.json());
 
-export const voteOnAPost = (id) =>
-  // TODO
-  fetch(localhost + `posts/${id}`, {
-    headers,
-    method: 'POST',
-  })
+export const voteOnPost = (id, option) =>
+  fetch(`${server}/posts/${id}`, {headers, method: 'POST', body: JSON.stringify(option)})
+    .then(res => res.json());
+
+export const editPost = (id, update) =>
+  fetch(`${server}/posts/${id}`, {headers, method: 'PUT', body: JSON.stringify(update)})
+    .then(res => res.json());
+
+export const deletePost = (id) =>
+  fetch(`${server}/posts/${id}`, {headers, method: 'DELETE'})
+    .then(res => res.json());
+
+export const getCommentsByPost = (postID) =>
+  fetch(`${server}/posts/${postID}/comments`, {headers, method: 'GET'})
+    .then(res => res.json());
+
+export const addComment = (comment) =>
+  fetch(`${server}/comments`, {headers, method: 'POST', body: JSON.stringify(comment)})
+    .then(res => res.json());
+
+export const getCommentDetail = (id) =>
+  fetch(`${server}/comments/${id}`, {headers, method: 'GET'})
+    .then(res => res.json());
+
+export const voteOnComment = (id, option) =>
+  fetch(`${server}/comments/${id}`, {headers, method: 'POST', body: JSON.stringify(option)})
+    .then(res => res.json());
+
+export const editComment = (id, update) =>
+  fetch(`${server}/comments/${id}`, {headers, method: 'PUT', body: JSON.stringify(update)})
+    .then(res => res.json());
+
+export const deleteComment = (id) =>
+  fetch(`${server}/comments/${id}`, {headers, method: 'DELETE'})
+    .then(res => res.json());
