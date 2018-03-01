@@ -6,15 +6,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
-import {loadPostsIntoStore} from './utils/post';
 
 const store = configureStore();
 
 store.subscribe(() => {
   console.log("store: ", store.getState());
 });
-
-loadPostsIntoStore(store);
 
 const jsx = (
   <Provider store={store}>
