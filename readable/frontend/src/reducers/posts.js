@@ -5,7 +5,7 @@ const postReducerDefaultState = [];
 export default (state = postReducerDefaultState, action) => {
   switch (action.type) {
     case LOAD_POSTS:
-      return action.posts;
+      return state.concat(action.posts);
     default:
       return state;
   }
