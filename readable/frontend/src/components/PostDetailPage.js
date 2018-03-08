@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {getCommentsByPost} from '../utils/api';
 import {connect} from 'react-redux';
-import {loadComments} from "../actions/comments";
 
 const PostDetailPage =
 ({ id, timestamp, title, body, author, category, voteScore, deleted, commentCount }) => {
@@ -22,18 +20,6 @@ const PostDetailPage =
       {/*<p>{this.props.comments.length}</p>*/}
     </div>
   );
-}
-
-function mapDispatchToProps (dispatch, props) {
-  return {
-    getComments: () => {
-      const comments = getCommentsByPost(props.id);
-      comments.then((comments) => {
-        dispatch(loadComments(comments))
-      })
-    }
-  }
-}
-
+};
 
 export default connect()(PostDetailPage);

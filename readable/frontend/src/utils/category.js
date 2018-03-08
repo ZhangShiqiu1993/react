@@ -7,6 +7,6 @@ export const loadCategoriesIntoStore = store => {
   getCategories().then((res) => {
     store.dispatch(loadCategories(res))
   }).then(() => {
-    loadCommentsIntoStore(store)
+    loadCommentsIntoStore(store);
   })
 };

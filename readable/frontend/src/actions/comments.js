@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 import moment from 'moment';
 
-
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
