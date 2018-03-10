@@ -5,7 +5,6 @@ const commentReducerDefaultState = [];
 export default (state = commentReducerDefaultState, action) => {
   switch (action.type) {
     case LOAD_COMMENTS:
-      console.log('comments: ', action.comments);
       return state.concat(action.comments);
     default:
       return state;
