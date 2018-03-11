@@ -19,11 +19,11 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={PostDashboardPage} />
-              <Route path="/create" component={AddPostPage} />
+              <Route exact path="/create" component={AddPostPage} />
               <Route exact path="/posts/:id" component={EditPostPage} />
-              <Route path="/comment/:id" component={EditCommentPage} />
+              <Route exact path="/comment/:id" component={EditCommentPage} />
               <Route exact path="/:category" component={CategoryPage} />
-              <Route path="/:category/:post_id" component={PostDetailPage} />
+              <Route exact path="/:category/:post_id" component={PostDetailPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>
