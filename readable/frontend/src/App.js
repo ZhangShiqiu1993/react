@@ -22,11 +22,8 @@ class App extends Component {
               <Route path="/create" component={AddPostPage} />
               <Route exact path="/posts/:id" component={EditPostPage} />
               <Route path="/comment/:id" component={EditCommentPage} />
-
               <Route exact path="/:category" component={CategoryPage} />
               <Route path="/:category/:post_id" component={PostDetailPage} />
-
-              {/*<Route path="/posts/:id/comments" component={} />*/}
               <Route component={NotFoundPage} />
             </Switch>
           </div>
