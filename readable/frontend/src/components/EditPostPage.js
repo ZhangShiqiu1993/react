@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 
 class EditPostPage extends Component {
   render() {
@@ -6,10 +8,16 @@ class EditPostPage extends Component {
     return (
       <div>
         <h1>Edit Post Post</h1>
-        <p>{this.props.match.params.id}</p>
+        <p>post id: {this.props.post.id}</p>
       </div>
     )
   }
 }
 
-export default EditPostPage;
+const mapStateToProps = (state, props) => {
+  return {
+    post: state.posts.find((post) => post.id === props.match.params.id)
+  }
+};
+
+export default connect(mapStateToProps)(EditPostPage);
