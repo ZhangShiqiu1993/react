@@ -1,18 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
+import PostForm from './PostForm';
 
-
-class EditPostPage extends Component {
-  render() {
-    console.log(this.props);
-    return (
-      <div>
-        <h1>Edit Post Post</h1>
-        <p>post id: {this.props.post.id}</p>
-      </div>
-    )
-  }
-}
+const EditPostPage = (props) => {
+  console.log(props);
+  return (
+    <div>
+      <h1>Edit Post Post</h1>
+      <PostForm
+        post={props.post}
+      />
+      <p>post id: {props.post.id}</p>
+    </div>
+  )
+};
 
 const mapStateToProps = (state, props) => {
   return {
