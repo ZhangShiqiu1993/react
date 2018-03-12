@@ -37,7 +37,13 @@ class PostForm extends Component {
     const author = e.target.value;
     this.setState({author});
   };
-  
+
+  onCategoryChange = (e) => {
+    const category = e.target.value;
+    this.setState({category});
+  };
+
+
 
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
@@ -49,6 +55,7 @@ class PostForm extends Component {
             {/* deleted, voteScore, timestamp*/}
             <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
             <input type="text" placeholder='author' value={author} onChange={this.onAuthorChange}/>
+            <input type="text" placeholder='category' value={category} onChange={this.onCategoryChange}/>
           </div>
         </form>
       </div>
