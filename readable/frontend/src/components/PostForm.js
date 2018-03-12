@@ -43,8 +43,11 @@ class PostForm extends Component {
     this.setState({category});
   };
 
-
-
+  onBodyChange = (e) => {
+    const body = e.target.value;
+    this.setState({body});
+  };
+  
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
     return (
@@ -56,6 +59,9 @@ class PostForm extends Component {
             <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
             <input type="text" placeholder='author' value={author} onChange={this.onAuthorChange}/>
             <input type="text" placeholder='category' value={category} onChange={this.onCategoryChange}/>
+            <textarea placeholder="post body" value={body} onChange={this.onBodyChange}>
+            </textarea>
+            <button>Submit</button>
           </div>
         </form>
       </div>
