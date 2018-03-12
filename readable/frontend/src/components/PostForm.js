@@ -28,15 +28,28 @@ class PostForm extends Component {
     }
   };
 
+  onTitleChange = (e) => {
+    const title = e.target.value;
+    this.setState({title});
+  };
+
+
+
   render() {
+    const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
     return (
       <div>
-        {this.state.error && <p>{this.state.error}</p>}
+        {error && <p>{error}</p>}
         <form onSubmit={this.onSubmit} className="create-contact-form">
           <div className="create-contact-details">
-            <input type="text" name="name" placeholder="Name"/>
-            <input type="text" name="email" placeholder="Email"/>
-            <button>Add Contact</button>
+            {/* deleted, voteScore, timestamp*/}
+            <input
+              type="text"
+              placeholder='title'
+              autoFocus
+              value={title}
+              onChange={this.onTitleChange}
+            />
           </div>
         </form>
       </div>
