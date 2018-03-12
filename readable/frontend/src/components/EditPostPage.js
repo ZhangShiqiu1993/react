@@ -3,14 +3,17 @@ import {connect} from 'react-redux';
 import PostForm from './PostForm';
 
 const EditPostPage = (props) => {
-  console.log(props);
+  const post = props.post;
   return (
     <div>
       <h1>Edit Post Post</h1>
       <PostForm
-        post={props.post}
+        {...post}
       />
-      <p>post id: {props.post.id}</p>
+      <button onClick={() => {
+        props.history.push('/');
+      }}>test</button>
+      <p>post id: {post.id}</p>
     </div>
   )
 };
