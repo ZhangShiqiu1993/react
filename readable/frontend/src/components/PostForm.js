@@ -33,7 +33,11 @@ class PostForm extends Component {
     this.setState({title});
   };
 
-
+  onAuthorChange = (e) => {
+    const author = e.target.value;
+    this.setState({author});
+  };
+  
 
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
@@ -43,13 +47,8 @@ class PostForm extends Component {
         <form onSubmit={this.onSubmit} className="create-contact-form">
           <div className="create-contact-details">
             {/* deleted, voteScore, timestamp*/}
-            <input
-              type="text"
-              placeholder='title'
-              autoFocus
-              value={title}
-              onChange={this.onTitleChange}
-            />
+            <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
+            <input type="text" placeholder='author' value={author} onChange={this.onAuthorChange}/>
           </div>
         </form>
       </div>
