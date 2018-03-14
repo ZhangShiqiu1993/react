@@ -14,8 +14,9 @@ export default () => {
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
-
+// TODO : pass dispatch instead of store
   loadPostsIntoStore(store);
+  // TODO : pass dispatch instead of store
   loadCategoriesIntoStore(store);
   return store;
 }
