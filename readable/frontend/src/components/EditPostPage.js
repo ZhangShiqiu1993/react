@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostForm from './PostForm';
+import {deletePost} from '../actions/posts';
 
 const EditPostPage = (props) => {
   const post = props.post;
@@ -11,8 +12,9 @@ const EditPostPage = (props) => {
         {...post}
       />
       <button onClick={() => {
+        props.dispatch(deletePost(post.id));
         props.history.push('/');
-      }}>test</button>
+      }}>delete</button>
       <p>post id: {post.id}</p>
     </div>
   )
