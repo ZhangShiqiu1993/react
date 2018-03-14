@@ -8,6 +8,7 @@ export default (state = postReducerDefaultState, action) => {
     case LOAD_POSTS:
       return state.concat(action.posts);
     case DELETE_POST:
+      // TODO: remove post
       deletePost(action.id);
       return state.map((post) => {
         if (post.id === action.id) {
