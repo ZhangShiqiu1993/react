@@ -51,7 +51,6 @@ class PostForm extends Component {
 
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
-    // console.log('form',!!this.props.categories);
     return (
       <div>
         {error && <p>{error}</p>}

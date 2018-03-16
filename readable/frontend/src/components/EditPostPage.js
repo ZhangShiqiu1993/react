@@ -5,11 +5,10 @@ import {deletePost} from '../actions/posts';
 
 const EditPostPage = (props) => {
   const post = props.post;
-  console.log(props);
   return (
     <div>
       <h1>Edit Post Post</h1>
-      {!!props.post && (
+      {!!post && (
         <div>
           <PostForm
             {...post}
@@ -26,7 +25,6 @@ const EditPostPage = (props) => {
 };
 
 const mapStateToProps = (state, props) => {
-  console.log('mapStateToPros',state,'post', props.match.params.id);
   return {
     post: state.posts.find((post) => post.id === props.match.params.id)
   }
