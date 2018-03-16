@@ -9,8 +9,17 @@ import EditCommentPage from './components/EditCommentPage';
 import PostDetailPage from './components/PostDetailPage';
 import CategoryPage from './components/CategoryPage';
 import NotFoundPage from './components/NotFoundPage';
+import { connect } from 'react-redux'
+import {loadCategoriesIntoStore} from "./utils/category";
+import {loadPostsIntoStore} from "./utils/post";
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.loadPosts();
+    this.props.loadCategories();
+  }
+
   render() {
     return (
       <div className="App">
@@ -33,4 +42,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadCategories: () => loadCategoriesIntoStore(dispatch),
+    loadPosts: () => loadPostsIntoStore(dispatch)
+  }
+};
+
+// TODO : pass dispatch instead of store
+// loadPostsIntoStore(store);
+// TODO : pass dispatch instead of store
+// loadCategoriesIntoStore(store);
+
+export default connect(null, mapDispatchToProps)(App);
