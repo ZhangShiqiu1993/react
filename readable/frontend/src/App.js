@@ -49,9 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-// TODO : pass dispatch instead of store
-// loadPostsIntoStore(store);
-// TODO : pass dispatch instead of store
-// loadCategoriesIntoStore(store);
-
 export default connect(null, mapDispatchToProps)(App);
