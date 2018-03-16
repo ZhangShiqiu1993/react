@@ -1,12 +1,8 @@
-
 import {loadComments} from '../actions/comments';
 import {getCommentsByPost} from './api';
 
-export const loadCommentsIntoStore = (store) => {
-  store.getState().posts.map(({id}) => {
-    // TODO: use dispatch
-    getCommentsByPost(id).then((res) => {
-      store.dispatch(loadComments(res))
-    })
-  });
+export const loadCommentsIntoStore = (dispatch, id) => {
+  getCommentsByPost(id).then((res) => {
+    dispatch(loadComments(res))
+  })
 };
