@@ -51,7 +51,7 @@ class PostForm extends Component {
 
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
-    console.log(this.props);
+    // console.log('form',!!this.props.categories);
     return (
       <div>
         {error && <p>{error}</p>}
@@ -71,13 +71,15 @@ class PostForm extends Component {
 
             <p>
               category
-              <select value={category} onChange={this.onCategoryChange}>
-                {
-                  this.props.categories.map((c) => (
-                    <option value={c.name} key={c.name}>{c.name}</option>
-                  ))
-                }
-              </select>
+              {this.props.categories && (
+                <select value={category} onChange={this.onCategoryChange}>
+                  {
+                    this.props.categories.map((c) => (
+                      <option value={c.name} key={c.name}>{c.name}</option>
+                    ))
+                  }
+                </select>
+              )}
             </p>
 
             <p>
