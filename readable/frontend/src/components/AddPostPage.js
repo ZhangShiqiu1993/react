@@ -1,25 +1,19 @@
-import React, {Component} from 'react';
-import serializeForm from 'form-serialize';
+import React from 'react';
+import PostForm from './PostForm';
+import {addPost} from "../actions/posts";
 
 
-class AddPostPage extends Component {
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const values = serializeForm(e.target, { hash: true});
-  //   if (this.props.onCreateContact) {
-  //     this.props.onCreateContact(values)
-  //   }
-  // };
+const AddPostPage = (props) => (
+  <div>
+    <h1>Add Post</h1>
+      <PostForm
+        onSubmit={(post) => {
+          props.dispatch(addPost(post));
+          props.history.push('/');
+        }}
+      />
 
-
-  render() {
-    return (
-      <div>
-        <h1>Add Post</h1>
-
-      </div>
-    )
-  }
-}
+  </div>
+);
 
 export default AddPostPage;
