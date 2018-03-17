@@ -64,6 +64,12 @@ class PostForm extends Component {
         {error && <p>{error}</p>}
         <form onSubmit={this.onSubmit} className="create-contact-form">
           <div className="create-contact-details">
+            {/* deleted, timestamp*/}
+            <p>
+              deleted
+
+            </p>
+
 
             <p>
               title
