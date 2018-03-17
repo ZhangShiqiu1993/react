@@ -8,7 +8,7 @@ class PostForm extends Component {
     body: this.props ? this.props.body: '',
     category: this.props ? this.props.category: '',
     title: this.props ? this.props.title: '',
-    voteScore: this.props ? this.props.voteScore.toString(): '',
+    voteScore: this.props.voteScore ? this.props.voteScore: 0,
     timestamp: this.props ? moment(this.props.timestamp): moment(),
     error: ''
   };
