@@ -57,6 +57,13 @@ class PostForm extends Component {
     this.setState({body});
   };
 
+  onTimeStampChange = (e) => {
+    const timestamp = e.target.value;
+    if (!timestamp || timestamp.match(/^\d+$/)){
+      this.setState({timestamp});
+    }
+  };
+
   render() {
     const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
     return (
@@ -74,6 +81,11 @@ class PostForm extends Component {
             <p>
               title
               <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
+            </p>
+
+            <p>
+              timestamp
+              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
             </p>
 
             <p>
