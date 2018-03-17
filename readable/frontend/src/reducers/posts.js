@@ -8,10 +8,17 @@ export default (state = postReducerDefaultState, action) => {
     case LOAD_POSTS:
       return state.concat(action.posts);
     case DELETE_POST:
-      // TODO: remove post
-      deletePost(action.id);
+      console.log('delete', action.post_id);
+      // deletePost(action.post_id);
       return state.map((post) => {
-        if (post.id === action.id) {
+        if (post.id === action.post_id) {
+          // console.log('current', post);
+          // const new_state = {
+          //   ...post,
+          //   deleted:true
+          // };
+          // console.log('new', new_state);
+          // return post;
           return {
             ...post,
             deleted: true
