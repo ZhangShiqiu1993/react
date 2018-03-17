@@ -76,11 +76,6 @@ class PostForm extends Component {
             </p>
 
             <p>
-              timestamp
-              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
-            </p>
-
-            <p>
               author
               <input type="text" placeholder='author' value={author} onChange={this.onAuthorChange}/>
             </p>
@@ -107,6 +102,11 @@ class PostForm extends Component {
             <p>
               voteScore
               <input type="number" placeholder='voteScore' value={voteScore} onChange={this.onVoteScoreChange}/>
+            </p>
+
+            <p>
+              timestamp
+              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
             </p>
 
             <button>Submit</button>
