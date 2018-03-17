@@ -7,9 +7,9 @@ class PostForm extends Component {
     author: this.props ? this.props.author: '',
     body: this.props ? this.props.body: '',
     category: this.props ? this.props.category: '',
-    deleted: this.props ? this.props.deleted: false,
+    // deleted: this.props ? this.props.deleted: false,
     title: this.props ? this.props.title: '',
-    voteScore: this.props ? this.props.voteScore: 0,
+    voteScore: this.props ? this.props.voteScore.toString(): '',
     timestamp: this.props ? moment(this.props.timestamp): moment(),
     error: ''
   };
@@ -24,8 +24,16 @@ class PostForm extends Component {
       this.setState({error: ""});
       this.props.onSubmit({
         author, body, title, category, deleted, voteScore,
-        timestamp: timestamp.valueOf()
+        timestamp: timestamp.valueOf(),
+        amount: parseInt(this.state.voteScore),
       });
+    }
+  };
+
+  onVoteScoreChange = (e) => {
+    const voteScore = e.target.value;
+    if (!voteScore || voteScore.match(/^\d+$/)){
+      this.setState({voteScore});
     }
   };
 
@@ -56,7 +64,6 @@ class PostForm extends Component {
         {error && <p>{error}</p>}
         <form onSubmit={this.onSubmit} className="create-contact-form">
           <div className="create-contact-details">
-            {/* deleted, voteScore, timestamp*/}
 
             <p>
               title
@@ -87,6 +94,10 @@ class PostForm extends Component {
             </textarea>
             </p>
 
+            <p>
+              voteScore
+              <input type="number" placeholder='voteScore' value={voteScore} onChange={this.onVoteScoreChange}/>
+            </p>
 
             <button>Submit</button>
           </div>
