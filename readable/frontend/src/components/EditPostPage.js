@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostForm from './PostForm';
-import {deletePost} from '../actions/posts';
+import {deletePost, editPost} from '../actions/posts';
 
 const EditPostPage = (props) => {
   const post = props.post;
@@ -11,6 +11,10 @@ const EditPostPage = (props) => {
       {!!post && (
         <div>
           <PostForm
+            onSubmit={(post) => {
+              props.dispatch(editPost(props.post.id, post));
+              props.history.push('/');
+            }}
             {...post}
           />
           <button onClick={() => {
