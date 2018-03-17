@@ -7,7 +7,6 @@ class PostForm extends Component {
     author: this.props ? this.props.author: '',
     body: this.props ? this.props.body: '',
     category: this.props ? this.props.category: '',
-    // deleted: this.props ? this.props.deleted: false,
     title: this.props ? this.props.title: '',
     voteScore: this.props ? this.props.voteScore.toString(): '',
     timestamp: this.props ? moment(this.props.timestamp): moment(),
@@ -17,13 +16,13 @@ class PostForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {title, author, body, category, deleted, voteScore, timestamp} = this.state;
+    const {title, author, body, category, voteScore, timestamp} = this.state;
     if (!title || !author || !body || !category) {
       this.setState({error: "Please provide title, body, author and category"});
     } else {
       this.setState({error: ""});
       this.props.onSubmit({
-        author, body, title, category, deleted, voteScore,
+        author, body, title, category, voteScore,
         timestamp: timestamp.valueOf(),
         amount: parseInt(this.state.voteScore),
       });
@@ -65,19 +64,12 @@ class PostForm extends Component {
   };
 
   render() {
-    const {title, author, body, category, deleted, voteScore, timestamp, error} = this.state;
+    const {title, author, body, category, voteScore, timestamp, error} = this.state;
     return (
       <div>
         {error && <p>{error}</p>}
         <form onSubmit={this.onSubmit} className="create-contact-form">
           <div className="create-contact-details">
-            {/* deleted, timestamp*/}
-            <p>
-              deleted
-
-            </p>
-
-
             <p>
               title
               <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
