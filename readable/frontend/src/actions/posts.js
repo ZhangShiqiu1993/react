@@ -15,15 +15,16 @@ export const deletePost = (post_id) => ({
   post_id
 });
 
-export const editPost = () => ({
-  type: EDIT_POST
+export const editPost = (id, updates) => ({
+  type: EDIT_POST,
+  id,
+  updates
 });
 
 export const loadPosts = (posts) => ({
   type: LOAD_POSTS,
   posts
 });
-
 
 const post = {
   id: uuid(),
