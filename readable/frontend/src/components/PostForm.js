@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 
 class PostForm extends Component {
   state = {
-    author: this.props ? this.props.author: '',
-    body: this.props ? this.props.body: '',
-    category: this.props ? this.props.category: '',
-    title: this.props ? this.props.title: '',
-    voteScore: this.props.voteScore ? this.props.voteScore: 0,
-    timestamp: this.props ? moment(this.props.timestamp): moment(),
+    author: this.props.post ? this.props.post.author: '',
+    body: this.props.post ? this.props.post.body: '',
+    category: this.props.post ? this.props.post.category: '',
+    title: this.props.post ? this.props.post.title: '',
+    voteScore: this.props.post ? this.props.post.voteScore: 0,
+    timestamp: this.props.post ? moment(this.props.post.timestamp): moment(),
     error: ''
   };
 
