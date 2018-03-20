@@ -11,11 +11,11 @@ const EditPostPage = (props) => {
       {!!post && (
         <div>
           <PostForm
+            post={post}
             onSubmit={(post) => {
               props.dispatch(editPost(props.post.id, post));
               props.history.push('/');
             }}
-            {...post}
           />
           <button onClick={() => {
             props.dispatch(deletePost(post.id));
