@@ -1,7 +1,7 @@
 import React from 'react';
 import PostForm from './PostForm';
 import {addPost} from "../actions/posts";
-
+import {connect} from 'react-redux';
 
 const AddPostPage = (props) => (
   <div>
@@ -16,4 +16,4 @@ const AddPostPage = (props) => (
   </div>
 );
 
-export default AddPostPage;
+export default connect()(AddPostPage);
