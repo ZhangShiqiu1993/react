@@ -6,23 +6,9 @@ export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const LOAD_POSTS = 'LOAD_POSTS';
 
-export const addPost = (
-  {
-    timestamp = moment(),
-    title = 'empty',
-    body = 'empty',
-    author = 'empty',
-    category = 'redux'
-  } = {}) => ({
+export const addPost = (post) => ({
   type: ADD_POST,
-  post: {
-    id: uuid(),
-    timestamp,
-    title,
-    body,
-    author,
-    category,
-  }
+  post
 });
 
 export const deletePost = (post_id) => ({
