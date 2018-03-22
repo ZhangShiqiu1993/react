@@ -1,19 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PostForm from './PostForm';
 import {addPost} from "../actions/posts";
 import {connect} from 'react-redux';
+import * as API from '../utils/api';
+import uuid from "uuid";
 
-const AddPostPage = (props) => (
-  <div>
-    <h1>Add Post</h1>
-      <PostForm
-        onSubmit={(post) => {
-          props.dispatch(addPost(post));
-          props.history.push('/');
-        }}
-      />
 
-  </div>
-);
+class AddPostPage extends Component {
+  onSubmit = (post) => {
+    post = {
+      ...post,
+      id: uuid(),
+    };
+    API.addPost(post).then(() => {
+      this.props.dispatch(addPost(post));
+    }, () => {
+      console.log("can't connect to api-server");
+    });
+    this.props.history.push('/');
+  };
+  render() {
+    return (
+      <div>
+        <h1>Add Post</h1>
+        <PostForm
+          onSubmit={this.onSubmit}
+        />
+      </div>
+    )
+  }
+}
 
 export default connect()(AddPostPage);
