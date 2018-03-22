@@ -26,8 +26,7 @@ export default (state = postReducerDefaultState, action) => {
         }
       });
     case DELETE_POST:
-      console.log('delete', action.post_id);
-      // deletePost(action.post_id);
+      deletePost(action.post_id);
       return state.map((post) => {
         if (post.id === action.post_id) {
           return {
