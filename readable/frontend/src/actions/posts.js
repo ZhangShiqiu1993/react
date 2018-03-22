@@ -1,6 +1,3 @@
-import uuid from 'uuid';
-import moment from 'moment';
-
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
@@ -26,12 +23,3 @@ export const loadPosts = (posts) => ({
   type: LOAD_POSTS,
   posts
 });
-
-const post = {
-  id: uuid(),
-  timestamp: moment(),
-  title: '',
-  body: '',
-  author: '',
-  category: ''
-};
