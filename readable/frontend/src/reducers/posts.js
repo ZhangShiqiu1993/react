@@ -6,7 +6,6 @@ const postReducerDefaultState = [];
 export default (state = postReducerDefaultState, action) => {
   switch (action.type) {
     case ADD_POST:
-      addPost(action.post);
       return [
         ...state,
         action.post
