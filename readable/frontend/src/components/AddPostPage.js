@@ -14,11 +14,10 @@ class AddPostPage extends Component {
     };
     API.addPost(post).then(() => {
       this.props.dispatch(addPost(post));
-    }, () => {
-      console.log("can't connect to api-server");
     });
     this.props.history.push('/');
   };
+
   render() {
     return (
       <div>
