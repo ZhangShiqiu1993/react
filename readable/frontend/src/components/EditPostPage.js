@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PostForm from './PostForm';
 import {deletePost, editPost} from '../actions/posts';
+import * as API from "../utils/api";
+
 
 const EditPostPage = (props) => {
   const post = props.post;
@@ -13,7 +15,9 @@ const EditPostPage = (props) => {
           <PostForm
             post={post}
             onSubmit={(post) => {
-              props.dispatch(editPost(props.post.id, post));
+              API.editPost(props.post.id, post).then(() => {
+                props.dispatch(editPost(props.post.id, post));
+              });
               props.history.push('/');
             }}
           />
