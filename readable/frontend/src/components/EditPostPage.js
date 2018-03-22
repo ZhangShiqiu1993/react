@@ -22,7 +22,9 @@ const EditPostPage = (props) => {
             }}
           />
           <button onClick={() => {
-            props.dispatch(deletePost(post.id));
+            API.deletePost(post.id).then(() => {
+              props.dispatch(deletePost(post.id));
+            });
             props.history.push('/');
           }}>delete</button>
           <p>post id: {post.id}</p>
