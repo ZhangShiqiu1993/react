@@ -30,3 +30,8 @@ export const upVotePost = (post_id) => ({
   type: UP_VOTE_POST,
   post_id,
 });
+
+export const downVotePost = (post_id) => ({
+  type: DOWN_VOTE_POST,
+  post_id,
+});
