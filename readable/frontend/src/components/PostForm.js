@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
-import {downVotePost, upVotePost} from "../actions/posts";
 
 class PostForm extends Component {
   state = {
@@ -13,8 +12,7 @@ class PostForm extends Component {
     timestamp: this.props.post ? moment(this.props.post.timestamp): moment(),
     error: ''
   };
-
-
+  
   onSubmit = (e) => {
     e.preventDefault();
     const {title, author, body, category, voteScore, timestamp} = this.state;
@@ -43,12 +41,6 @@ class PostForm extends Component {
       voteScore: state.voteScore - 1
     }))
   };
-  // onVoteScoreChange = (e) => {
-  //   const voteScore = e.target.value;
-  //   if (!voteScore || voteScore.match(/^\d+$/)){
-  //     this.setState({voteScore});
-  //   }
-  // };
 
   onTitleChange = (e) => {
     const title = e.target.value;
