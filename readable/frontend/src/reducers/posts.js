@@ -15,6 +15,17 @@ export default (state = postReducerDefaultState, action) => {
           return post;
         }
       });
+    case DOWN_VOTE_POST:
+      return state.map((post) => {
+        if (post.id === action.post_id) {
+          return {
+            ...post,
+            voteScore: post.voteScore - 1
+          }
+        } else {
+          return post;
+        }
+      });
     case ADD_POST:
       return [
         ...state,
