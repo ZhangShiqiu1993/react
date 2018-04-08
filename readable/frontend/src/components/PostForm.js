@@ -37,6 +37,12 @@ class PostForm extends Component {
     }))
   };
 
+  downvote = (e) => {
+    e.preventDefault();
+    this.setState((state) => ({
+      voteScore: state.voteScore - 1
+    }))
+  };
   // onVoteScoreChange = (e) => {
   //   const voteScore = e.target.value;
   //   if (!voteScore || voteScore.match(/^\d+$/)){
