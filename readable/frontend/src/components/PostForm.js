@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
+import {downVotePost, upVotePost} from "../actions/posts";
 
 class PostForm extends Component {
   state = {
@@ -28,13 +29,13 @@ class PostForm extends Component {
       });
     }
   };
-
-  onVoteScoreChange = (e) => {
-    const voteScore = e.target.value;
-    if (!voteScore || voteScore.match(/^\d+$/)){
-      this.setState({voteScore});
-    }
-  };
+  
+  // onVoteScoreChange = (e) => {
+  //   const voteScore = e.target.value;
+  //   if (!voteScore || voteScore.match(/^\d+$/)){
+  //     this.setState({voteScore});
+  //   }
+  // };
 
   onTitleChange = (e) => {
     const title = e.target.value;
@@ -100,14 +101,11 @@ class PostForm extends Component {
             </p>
 
             <p>
-              voteScore
-              <input type="number" placeholder='voteScore' value={voteScore} onChange={this.onVoteScoreChange}/>
+              voteScore: {voteScore}
+              <button onClick={this.upvote}>upvote</button>
+              <button onClick={this.downvote}>downvote</button>
             </p>
 
-            <p>
-              timestamp
-              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
-            </p>
 
             <button>Submit</button>
           </div>
