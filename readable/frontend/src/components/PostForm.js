@@ -12,7 +12,7 @@ class PostForm extends Component {
     timestamp: this.props.post ? moment(this.props.post.timestamp): moment(),
     error: ''
   };
-  
+
   onSubmit = (e) => {
     e.preventDefault();
     const {title, author, body, category, voteScore, timestamp} = this.state;
@@ -103,6 +103,11 @@ class PostForm extends Component {
             body
             <textarea placeholder="post body" value={body} onChange={this.onBodyChange}>
             </textarea>
+            </p>
+            
+            <p>
+              timestamp
+              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
             </p>
 
             <p>
