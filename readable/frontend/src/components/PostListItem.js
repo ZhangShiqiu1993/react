@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {upVotePost, downVotePost} from "../actions/posts";
+import {voteOnPost} from '../utils/api';
 
 class PostListItem extends Component {
-  upvote = (e) => {
-    console.log("upvote", this.props.id);
-    this.props.dispatch(upVotePost(this.props.id))
-  };
-
-  downvote = (e) => {
-    console.log('downvote', this.props.id);
-    this.props.dispatch(downVotePost(this.props.id))
+  upvote = () => {
+    const id = this.props.id;
+    voteOnPost(id, "upVote").then(() => {
+      this.props.dispatch(upVotePost(id));
+    });
   };
 
   render() {
@@ -29,6 +27,8 @@ class PostListItem extends Component {
         <Link to={`/${category}`}>category - {category}</Link>
         <button onClick={this.upvote}>upvote</button>
         <button onClick={this.downvote}>downvote</button>
+        <button onClick={this.deletePost}>delete</button>
+
       </div>
     );
   }
