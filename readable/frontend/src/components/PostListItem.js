@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {upVotePost, downVotePost} from "../actions/posts";
-import {voteOnPost} from '../utils/api';
+import {upVotePost, downVotePost, deletePost} from "../actions/posts";
+import * as API from "../utils/api";
 
 class PostListItem extends Component {
   upvote = () => {
     const id = this.props.id;
-    voteOnPost(id, "upVote").then(() => {
+    API.voteOnPost(id, "upVote").then(() => {
       this.props.dispatch(upVotePost(id));
     });
   };
 
   downvote = () => {
     const id = this.props.id;
-    voteOnPost(id, 'downVote').then(() => {
+    API.voteOnPost(id, 'downVote').then(() => {
       this.props.dispatch(downVotePost(id))
     });
   };
-
+  
 
   render() {
     const {id, title, body, author, category, voteScore, commentCount} = this.props;
