@@ -27,16 +27,14 @@ export const getPostByID = (id) =>
     .then(res => res.json());
 
 export const voteOnPost = (id, option) =>
-  fetch(`${server}/posts/${id}`, {headers, method: 'POST', body: JSON.stringify(option)})
-    .then(res => res.json());
+  fetch(`${server}/posts/${id}`, {headers, method: 'POST', body: JSON.stringify({option})});
 
 export const editPost = (id, update) =>
   fetch(`${server}/posts/${id}`, {headers, method: 'PUT', body: JSON.stringify(update)})
     .then(res => res.json());
 
 export const deletePost = (id) =>
-  fetch(`${server}/posts/${id}`, {headers, method: 'DELETE'})
-    .then(res => res.json());
+  fetch(`${server}/posts/${id}`, {headers, method: 'DELETE'});
 
 export const getCommentsByPost = (postID) =>
   fetch(`${server}/posts/${postID}/comments`, {headers, method: 'GET'})

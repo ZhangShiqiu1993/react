@@ -18,7 +18,13 @@ class PostListItem extends Component {
       this.props.dispatch(downVotePost(id))
     });
   };
-  
+
+  deletePost = () => {
+    const id = this.props.id;
+    API.deletePost(id).then(() => {
+      this.props.dispatch(deletePost(id));
+    });
+  };
 
   render() {
     const {id, title, body, author, category, voteScore, commentCount} = this.props;
