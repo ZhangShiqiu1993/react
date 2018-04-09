@@ -27,7 +27,6 @@ const EditPostPage = (props) => {
             });
             props.history.push('/');
           }}>delete</button>
-          <p>post id: {post.id}</p>
         </div>
       )}
     </div>
