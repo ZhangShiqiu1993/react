@@ -12,6 +12,14 @@ class PostListItem extends Component {
     });
   };
 
+  downvote = () => {
+    const id = this.props.id;
+    voteOnPost(id, 'downVote').then(() => {
+      this.props.dispatch(downVotePost(id))
+    });
+  };
+
+
   render() {
     const {id, title, body, author, category, voteScore, commentCount} = this.props;
     return (
