@@ -7,7 +7,7 @@ export const loadPostsIntoStore = (dispatch) => {
     dispatch(loadPosts(posts));
     return posts;
   }).then((posts)=> {
-    posts.map(({ id }) => {
+    posts.forEach(({ id }) => {
       getCommentsByPost(id).then((comment) => {
         dispatch(loadComments(comment))
       })
