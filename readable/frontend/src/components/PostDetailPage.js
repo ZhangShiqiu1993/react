@@ -4,16 +4,12 @@ import CommentList from './CommentList';
 import Post from './Post';
 
 const PostDetailPage = (props) => {
-  console.log('post detail page', props);
   const {post, comments} = props;
   return (
     <div>
       <h3>Post Detail Page</h3>
-      {!!post && (
-        <Post {...post}/>
-      )}
+      {!!post && (<Post {...post}/>)}
       {!!comments && <CommentList/> }
-
     </div>
   );
 };
@@ -25,6 +21,5 @@ const mapStateToProps = (state, props) => {
     comments: state.comments.filter((comment) => comment.parentId === id)
   }
 };
-
 
 export default connect(mapStateToProps)(PostDetailPage);
