@@ -1,25 +1,42 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import CommentList from './CommentList';
 
-const PostDetailPage =
-({ id, timestamp, title, body, author, category, voteScore, deleted, commentCount }) => {
+const PostDetailPage = (props) => {
+  console.log('post detail page', props);
+  const {post, comments} = props;
   return (
     <div>
-      <Link to={`/posts/${id}`}>
-        <h3>{title}</h3>
-      </Link>
-      <p>body - {body}</p>
-      <p>author - {author}</p>
-      <p>number of comment: {commentCount}</p>
-      <p>current score: {voteScore}</p>
-      <button>upvote</button>
-      <button>downvote</button>
-      <button>edit</button>
-      <button>delete</button>
-      {/*<p>{this.props.comments.length}</p>*/}
+      <h3>Post Detail Page</h3>
+      {!!post && (
+        <div>
+          <Link to={`/posts/${post.id}`}>
+            <h3>{post.title}</h3>
+          </Link>
+          <p> body - {post.body}</p>
+          <p>author - {post.author}</p>
+          <p>number of comment: {post.commentCount}</p>
+          <p>current score: {post.voteScore}</p>
+          <button>upvote</button>
+          <button>downvote</button>
+          <button>delete</button>
+          <p>detail page</p>
+        </div>
+      )}
+      {!!comments && <CommentList/> }
+
     </div>
   );
 };
 
-export default connect()(PostDetailPage);
+const mapStateToProps = (state, props) => {
+  const id = props.match.params.post_id;
+  return {
+    post: state.posts.find((post) => post.id === id),
+    comments: state.comments.filter((comment) => comment.parentId === id)
+  }
+};
+
+
+export default connect(mapStateToProps)(PostDetailPage);
