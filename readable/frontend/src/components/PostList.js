@@ -15,7 +15,6 @@ const PostList = (props) => (
 const mapStateToProps = (state) => {
   return {
     posts: selectPost(state.posts, state.filter)
-    // posts: state.posts.filter((post) => !post.deleted)
   };
 };
 
