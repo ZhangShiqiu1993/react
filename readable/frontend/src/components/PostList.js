@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Post from './Post';
+import selectPost from '../selectors/post';
 
 const PostList = (props) => (
   <div>
@@ -13,7 +14,8 @@ const PostList = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.filter((post) => !post.deleted)
+    posts: selectPost(state.posts, state.filter)
+    // posts: state.posts.filter((post) => !post.deleted)
   };
 };
 
