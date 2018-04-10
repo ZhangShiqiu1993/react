@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PostDetailPage from './PostDetailPage';
+import Post from './Post';
 
 class CategoryPage extends Component {
   render() {
@@ -9,7 +9,7 @@ class CategoryPage extends Component {
         <h3>Category</h3>
         <p>{this.props.posts.length}</p>
         {this.props.posts && this.props.posts.map((post) => (
-          <PostDetailPage key={post.id} {...post}/>
+          <Post key={post.id} {...post}/>
         ))}
       </div>
     )
