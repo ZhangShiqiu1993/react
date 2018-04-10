@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PostListItem from './PostListItem';
+import Post from './Post';
 
 const PostList = (props) => (
   <div>
     <h1>Post List</h1>
     {props.posts.map((post) => {
-      return <PostListItem key={post.id} {...post}/>
+      return <Post key={post.id} {...post}/>
     })}
   </div>
 );
