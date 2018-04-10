@@ -30,7 +30,7 @@ class PostListItem extends Component {
     const {id, title, body, author, category, voteScore, commentCount} = this.props;
     return (
       <div>
-        <Link to={`/posts/${id}`}>
+        <Link to={`/${category}/${id}`}>
           <h3>{title}</h3>
         </Link>
         <p>author - {author}</p>
@@ -42,7 +42,9 @@ class PostListItem extends Component {
         <button onClick={this.upvote}>upvote</button>
         <button onClick={this.downvote}>downvote</button>
         <button onClick={this.deletePost}>delete</button>
-
+        <Link to={`/posts/${id}`}>
+          <p>edit</p>
+        </Link>
       </div>
     );
   }
