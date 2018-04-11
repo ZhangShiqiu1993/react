@@ -15,6 +15,17 @@ export default (state = postReducerDefaultState, action) => {
           return post;
         }
       });
+    case REMOVE_POST_COMMENT:
+      return state.map((post) => {
+        if (post.id === action.id) {
+          return {
+            ...post,
+            commentCount: post.commentCount - 1
+          }
+        } else {
+          return post;
+        }
+      });
     case UP_VOTE_POST:
       return state.map((post) => {
         if (post.id === action.post_id) {
