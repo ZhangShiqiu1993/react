@@ -1,25 +1,28 @@
-import uuid from 'uuid';
-import moment from 'moment';
-
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const LOAD_COMMENTS = 'LOAD_COMMENTS';
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 
 export const loadComments = (comments) => ({
   type: LOAD_COMMENTS,
   comments
 });
 
-export const createComment = ({body='', author='', parentID=0} = {}) => ({
+export const addComment = (comment) => ({
   type: ADD_COMMENT,
-  comment: {
-    id: uuid(),
-    timestamp: moment.valueOf(),
-    body,
-    author,
-    parentID
-  }
+  comment
+});
+
+export const upVoteComment = (id) => ({
+  type: UP_VOTE_COMMENT,
+  id,
+});
+
+export const downVoteComment = (id) => ({
+  type: DOWN_VOTE_COMMENT,
+  id,
 });
 
 export const deleteComment = (id) => ({
@@ -27,14 +30,8 @@ export const deleteComment = (id) => ({
   id
 });
 
-export const editComment = () => ({
-  type: EDIT_COMMENT
+export const editComment = (id, updates) => ({
+  type: EDIT_COMMENT,
+  id,
+  updates
 });
-
-const comment = {
-  id: uuid(),
-  timestamp: moment(),
-  body: '',
-  author: '',
-  parentId: uuid()
-};
