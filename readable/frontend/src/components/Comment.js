@@ -13,6 +13,13 @@ class Comment extends Component {
     });
   };
 
+  downvote = () => {
+    const id = this.props.id;
+    API.voteOnComment(id, 'downVote').then(() => {
+      this.props.dispatch(downVoteComment(id))
+    });
+  };
+
   deleteComment = () => {
     const id = this.props.id;
     API.deleteComment(id).then(() => {
