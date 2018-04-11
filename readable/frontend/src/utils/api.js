@@ -41,16 +41,14 @@ export const getCommentsByPost = (postID) =>
     .then(res => res.json());
 
 export const addComment = (comment) =>
-  fetch(`${server}/comments`, {headers, method: 'POST', body: JSON.stringify(comment)})
-    .then(res => res.json());
+  fetch(`${server}/comments`, {headers, method: 'POST', body: JSON.stringify(comment)});
 
 export const getCommentByID = (id) =>
   fetch(`${server}/comments/${id}`, {headers, method: 'GET'})
     .then(res => res.json());
 
 export const voteOnComment = (id, option) =>
-  fetch(`${server}/comments/${id}`, {headers, method: 'POST', body: JSON.stringify(option)})
-    .then(res => res.json());
+  fetch(`${server}/comments/${id}`, {headers, method: 'POST', body: JSON.stringify({option})});
 
 export const editComment = (id, update) =>
   fetch(`${server}/comments/${id}`, {headers, method: 'PUT', body: JSON.stringify(update)})
