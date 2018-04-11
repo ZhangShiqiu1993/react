@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import './App.css';
 import Header from './components/Header';
 import PostDashboardPage from './components/PostDashboardPage';
 import EditPostPage from './components/EditPostPage';
@@ -30,7 +29,7 @@ class App extends Component {
               <Route exact path="/" component={PostDashboardPage} />
               <Route exact path="/create" component={AddPostPage} />
               <Route exact path="/posts/:id" component={EditPostPage} />
-              <Route exact path="/comment/:id" component={EditCommentPage} />
+              <Route exact path="/comments/:id" component={EditCommentPage} />
               <Route exact path="/:category" component={CategoryPage} />
               <Route exact path="/:category/:post_id" component={PostDetailPage} />
               <Route component={NotFoundPage} />
