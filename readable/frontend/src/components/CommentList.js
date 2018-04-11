@@ -1,19 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CommentListItem from './CommentListItem';
+import Comment from './Comment';
 
 const CommentList = (props) => (
   <div>
     <h3>comment</h3>
     {props.comments.map((comment) => {
-      return <CommentListItem key={comment.id} {...comment}/>
+      return <Comment key={comment.id} {...comment}/>
     })}
   </div>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
-    comments: state.comments.filter(({deleted, parentDeleted}) => !deleted && !parentDeleted)
+    comments: state.comments.filter(
+      ({deleted, parentId, parentDeleted}) => !deleted && !parentDeleted && parentId === props.parentId
+    )
   };
 };
 
