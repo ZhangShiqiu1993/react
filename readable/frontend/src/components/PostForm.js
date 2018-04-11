@@ -23,7 +23,6 @@ class PostForm extends Component {
       this.props.onSubmit({
         author, body, title, category, voteScore,
         timestamp: timestamp.valueOf(),
-        amount: parseInt(this.state.voteScore),
       });
     }
   };
@@ -74,8 +73,8 @@ class PostForm extends Component {
     return (
       <div>
         {error && <p>{error}</p>}
-        <form onSubmit={this.onSubmit} className="create-contact-form">
-          <div className="create-contact-details">
+        <form onSubmit={this.onSubmit}>
+          <div>
             <p>
               title
               <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
@@ -115,7 +114,6 @@ class PostForm extends Component {
               <button onClick={this.upvote}>upvote</button>
               <button onClick={this.downvote}>downvote</button>
             </p>
-
 
             <button>Submit</button>
           </div>
