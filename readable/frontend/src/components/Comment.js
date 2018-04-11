@@ -6,6 +6,14 @@ import {deleteComment, downVoteComment, upVoteComment} from "../actions/comments
 import {removePostComment} from "../actions/posts";
 
 class Comment extends Component {
+  deleteComment = () => {
+    const id = this.props.id;
+    API.deleteComment(id).then(() => {
+      this.props.dispatch(deleteComment(id));
+      this.props.dispatch(removePostComment(this.props.parentId));
+    });
+  };
+
   render() {
     const {id, title, body, author, voteScore} = this.props;
     return (
