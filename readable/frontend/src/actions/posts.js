@@ -5,9 +5,15 @@ export const LOAD_POSTS = 'LOAD_POSTS';
 export const UP_VOTE_POST = 'UP_VOTE_POST';
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 export const REMOVE_POST_COMMENT = "REMOVE_POST_COMMENT";
+export const ADD_POST_COMMENT = "ADD_POST_COMMENT";
 
 export const removePostComment = (id) => ({
   type: REMOVE_POST_COMMENT,
+  id
+});
+
+export const addPostComment = (id) => ({
+  type:ADD_POST_COMMENT,
   id
 });
 
