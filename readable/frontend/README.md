@@ -1,6 +1,6 @@
 # Readable API Server
-
-* Install and start the API server
+* Download the [API server](https://github.com/udacity/reactnd-project-readable-starter)
+* Start the API server
     - `cd api-server`
     - `npm install`
     - `node server`
