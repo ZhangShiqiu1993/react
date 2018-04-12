@@ -49,9 +49,13 @@ export default (state = postReducerDefaultState, action) => {
         }
       });
     case ADD_POST:
+      const new_post = {
+        ...action.post,
+        commentCount: 0
+      };
       return [
         ...state,
-        action.post
+        new_post
       ];
     case LOAD_POSTS:
       return state.concat(action.posts);
