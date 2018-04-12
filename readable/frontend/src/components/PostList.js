@@ -5,7 +5,6 @@ import selectPost from '../selectors/post';
 
 const PostList = (props) => (
   <div>
-    <h1>Post List</h1>
     {props.posts.map((post) => {
       return <Post key={post.id} {...post}/>
     })}
