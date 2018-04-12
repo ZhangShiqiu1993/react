@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import * as API from '../utils/api';
 import uuid from "uuid";
 
-
 class AddPostPage extends Component {
   onSubmit = (post) => {
     post = {
@@ -21,7 +20,7 @@ class AddPostPage extends Component {
   render() {
     return (
       <div>
-        <h1>Add Post</h1>
+        <h3>Add Post</h3>
         <PostForm
           onSubmit={this.onSubmit}
         />

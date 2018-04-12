@@ -6,8 +6,7 @@ class CategoryPage extends Component {
   render() {
     return (
       <div>
-        <h3>Category</h3>
-        <p>{this.props.posts.length}</p>
+        <h3>{this.props.match.params.category}</h3>
         {this.props.posts && this.props.posts.map((post) => (
           <Post key={post.id} {...post}/>
         ))}

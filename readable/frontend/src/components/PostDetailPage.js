@@ -26,7 +26,6 @@ class PostDetailPage extends Component {
     const {post, comments} = this.props;
     const jsx = !!post ? (
       <div>
-        <h3>Post Detail Page</h3>
         <Post {...post}/>
         {!!comments && <CommentList parentId={post.id}/> }
         <CommentForm
