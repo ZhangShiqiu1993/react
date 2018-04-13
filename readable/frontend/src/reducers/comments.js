@@ -1,4 +1,11 @@
-import {ADD_COMMENT, EDIT_COMMENT, DELETE_COMMENT, LOAD_COMMENTS, DOWN_VOTE_COMMENT, UP_VOTE_COMMENT} from '../actions/comments';
+import {
+  LOAD_COMMENTS,
+  ADD_COMMENT,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT,
+  DELETE_COMMENT,
+  EDIT_COMMENT
+} from "./type";
 
 const commentReducerDefaultState = [];
 

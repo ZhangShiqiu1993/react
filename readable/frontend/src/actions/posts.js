@@ -1,11 +1,13 @@
-export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const EDIT_POST = 'EDIT_POST';
-export const LOAD_POSTS = 'LOAD_POSTS';
-export const UP_VOTE_POST = 'UP_VOTE_POST';
-export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
-export const REMOVE_POST_COMMENT = "REMOVE_POST_COMMENT";
-export const ADD_POST_COMMENT = "ADD_POST_COMMENT";
+import {
+  REMOVE_POST_COMMENT,
+  ADD_POST,
+  ADD_POST_COMMENT,
+  DELETE_POST,
+  EDIT_POST,
+  LOAD_POSTS,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST
+} from "./type";
 
 export const removePostComment = (id) => ({
   type: REMOVE_POST_COMMENT,

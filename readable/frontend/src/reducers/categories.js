@@ -1,4 +1,4 @@
-import {LOAD_CATEGORIES} from '../actions/categories';
+import {LOAD_CATEGORIES} from '../actions/type';
 
 const categoryReducerDefaultState = {};
 

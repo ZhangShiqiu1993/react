@@ -1,4 +1,13 @@
-import {ADD_POST_COMMENT, REMOVE_POST_COMMENT,ADD_POST, EDIT_POST, DELETE_POST, LOAD_POSTS, UP_VOTE_POST, DOWN_VOTE_POST} from '../actions/posts';
+import {
+  REMOVE_POST_COMMENT,
+  ADD_POST,
+  ADD_POST_COMMENT,
+  DELETE_POST,
+  EDIT_POST,
+  LOAD_POSTS,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST
+} from "./type";
 
 const postReducerDefaultState = [];
 

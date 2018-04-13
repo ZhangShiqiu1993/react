@@ -1,9 +1,11 @@
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const EDIT_COMMENT = 'EDIT_COMMENT';
-export const LOAD_COMMENTS = 'LOAD_COMMENTS';
-export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
-export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
+import {
+  LOAD_COMMENTS,
+  ADD_COMMENT,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT,
+  DELETE_COMMENT,
+  EDIT_COMMENT
+} from "./type";
 
 export const loadComments = (comments) => ({
   type: LOAD_COMMENTS,

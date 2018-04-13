@@ -1,4 +1,4 @@
-import {SORTING} from "../actions/filters";
+import {SORTING} from "../actions/type";
 
 const filtersReducerDefaultState = {
   field: 'timestamp',
