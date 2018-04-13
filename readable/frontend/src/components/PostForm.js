@@ -1,6 +1,20 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
+import { Form, Input, Icon, Select, Button} from 'antd';
+const Option = Select.Option;
+const { TextArea } = Input;
+
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+};
 
 class PostForm extends Component {
   state = {
@@ -51,8 +65,7 @@ class PostForm extends Component {
     this.setState({author});
   };
 
-  onCategoryChange = (e) => {
-    const category = e.target.value;
+  onCategoryChange = (category) => {
     this.setState({category});
   };
 
@@ -61,63 +74,77 @@ class PostForm extends Component {
     this.setState({body});
   };
 
-  onTimeStampChange = (e) => {
-    const timestamp = e.target.value;
-    if (!timestamp || timestamp.match(/^\d+$/)){
-      this.setState({timestamp});
-    }
-  };
-
   render() {
-    const {title, author, body, category, voteScore, timestamp, error} = this.state;
+    const {title, author, body, category, voteScore, error} = this.state;
     return (
       <div>
         {error && <p>{error}</p>}
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <p>
-              title
-              <input type="text" placeholder='title' autoFocus value={title} onChange={this.onTitleChange}/>
-            </p>
+        <Form onSubmit={this.onSubmit}>
+            <Form.Item
+              {...formItemLayout}
+              label="Title"
+            >
+              <Input
+                type="text"
+                placeholder='title'
+                autoFocus
+                value={title}
+                onChange={this.onTitleChange}
+                prefix={<Icon type="book" className="icon_transparent" />}
+              />
+            </Form.Item>
 
-            <p>
-              author
-              <input type="text" placeholder='author' value={author} onChange={this.onAuthorChange}/>
-            </p>
+            <Form.Item
+              {...formItemLayout}
+              label="Author"
+            >
+              <Input
+                type="text"
+                placeholder='author'
+                value={author}
+                onChange={this.onAuthorChange}
+                prefix={<Icon type="user" className="icon_transparent"/>}
+              />
+            </Form.Item>
 
-            <p>
-              category
+            <Form.Item
+              {...formItemLayout}
+              label="Category"
+            >
               {this.props.categories && (
-                <select value={category} onChange={this.onCategoryChange}>
+                <Select value={category} onChange={this.onCategoryChange}>
                   {
                     this.props.categories.map((c) => (
-                      <option value={c.name} key={c.name}>{c.name}</option>
+                      <Option value={c.name} key={c.name}>{c.name}</Option>
                     ))
                   }
-                </select>
+                </Select>
               )}
-            </p>
+            </Form.Item>
+            <Form.Item
+              {...formItemLayout}
+              label="Body"
+            >
+              <TextArea
+                autosize={{ minRows: 2, maxRows: 6 }}
+                placeholder="post"
+                value={body}
+                onChange={this.onBodyChange}/>
+            </Form.Item>
 
-            <p>
-            body
-            <textarea placeholder="post body" value={body} onChange={this.onBodyChange}>
-            </textarea>
-            </p>
-            
-            <p>
-              timestamp
-              <input type="number" placeholder='timestamp' value={timestamp} onChange={this.onTimeStampChange}/>
-            </p>
-
-            <p>
-              voteScore: {voteScore}
-              <button onClick={this.upvote}>upvote</button>
-              <button onClick={this.downvote}>downvote</button>
-            </p>
-
-            <button>Submit</button>
-          </div>
-        </form>
+            <Form.Item
+              {...formItemLayout}
+              label={"voteScore"}
+            >
+              <Input
+                addonBefore={<Button size="small" onClick={this.upvote}>upvote</Button>}
+                addonAfter={<Button size="small" onClick={this.downvote}>downvote</Button>}
+                value={voteScore}
+                readOnly
+              />
+            </Form.Item>
+          <Button type="primary" htmlType="submit">Submit</Button>
+        </Form>
       </div>
     )
   }
