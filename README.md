@@ -8,7 +8,8 @@
 + [x] indecision app
 + [x] portfolio app
 + [x] expensify app
-+ [ ] readable
++ [x] readable
++ [ ] fitness
 
 ---
 
