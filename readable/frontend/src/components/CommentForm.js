@@ -44,13 +44,6 @@ class CommentForm extends Component {
     this.setState({parentId});
   };
 
-  // onTimeStampChange = (e) => {
-  //   const timestamp = e.target.value;
-  //   if (!timestamp || timestamp.match(/^\d+$/)){
-  //     this.setState({timestamp});
-  //   }
-  // };
-
   upvote = (e) => {
     e.preventDefault();
     this.setState((state) => ({
@@ -134,10 +127,8 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts
-  }
+const mapStateToProps = ({posts}) => {
+  return {posts}
 };
 
 export default connect(mapStateToProps)(CommentForm);
