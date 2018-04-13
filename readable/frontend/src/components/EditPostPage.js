@@ -1,17 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import PostForm from './PostForm';
 import {deletePost, editPost} from '../actions/posts';
 import * as API from "../utils/api";
-
+import {Button} from 'antd';
 
 const EditPostPage = (props) => {
   const post = props.post;
   return (
     <div>
-      <h1>Edit Post Post</h1>
       {!!post && (
         <div>
+          <h3>Edit Post or
+            <Button
+              type="danger"
+              onClick={() => {
+                API.deletePost(post.id).then(() => {
+                  props.dispatch(deletePost(post.id));
+                });
+              props.history.push('/');
+            }}>
+              delete
+            </Button>
+          </h3>
           <PostForm
             post={post}
             onSubmit={(post) => {
@@ -21,12 +32,6 @@ const EditPostPage = (props) => {
               props.history.push('/');
             }}
           />
-          <button onClick={() => {
-            API.deletePost(post.id).then(() => {
-              props.dispatch(deletePost(post.id));
-            });
-            props.history.push('/');
-          }}>delete</button>
         </div>
       )}
     </div>
