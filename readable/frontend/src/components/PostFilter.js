@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {sorting} from "../actions/filters";
+import { Select } from 'antd';
+const Option = Select.Option;
 
 class PostFilter extends Component {
   render() {
     return (
       <div>
-        <select
-          value={this.props.filter ? this.props.filter.field : 'timestamp'}
-          onChange={(e) => {
-            this.props.dispatch(sorting(e.target.value));
+        <span>sort by</span>
+        <Select
+          defaultValue={this.props.filter ? this.props.filter.field : 'timestamp'}
+          className="select_width"
+          onChange={(value) => {
+            this.props.dispatch(sorting(value));
           }}
         >
-          <option value="timestamp">timestamp</option>
-          <option value="voteScore">voteScore</option>
-        </select>
+          <Option value="timestamp">timestamp</Option>
+          <Option value="voteScore">voteScore</Option>
+        </Select>
       </div>
     )
   }
