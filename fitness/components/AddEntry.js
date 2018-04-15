@@ -35,6 +35,10 @@ export default class AddEntry extends Component {
     })
   }
 
+  slide = (metric, value) => {
+    this.setState({[metric]: value})
+  }
+
   render() {
     return (
       <View>
