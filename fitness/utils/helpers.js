@@ -3,7 +3,13 @@ import {View} from 'react-native';
 import {FontAwesome, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {white} from "./colors";
 
+export function getMetricMetaInfo (metric) {
+  const info = {}
 
+  return typeof metric === 'undefined'
+    ? info
+    : info[metric]
+}
 
 // export function getMetricMetaInfo (metric) {
 //     const info = {
