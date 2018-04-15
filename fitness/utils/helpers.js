@@ -1,4 +1,8 @@
-// utils/helpers.js
+import React from 'react';
+import {View} from 'react-native';
+import {FontAwesome, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {white} from "./colors";
+
 
 export function getMetricMetaInfo (metric) {
     const info = {
@@ -93,23 +97,23 @@ export function getMetricMetaInfo (metric) {
         }
       },
     }
-  
+
     return typeof metric === 'undefined'
       ? info
       : info[metric]
   }
-  
+
   export function isBetween (num, x, y) {
     if (num >= x && num <= y) {
       return true
     }
-  
+
     return false
   }
-  
+
   export function calculateDirection (heading) {
     let direction = ''
-  
+
     if (isBetween(heading, 0, 22.5)) {
       direction = 'North'
     } else if (isBetween(heading, 22.5, 67.5)) {
@@ -131,10 +135,10 @@ export function getMetricMetaInfo (metric) {
     } else {
       direction = 'Calculating'
     }
-  
+
     return direction
   }
-  
+
   export function timeToString (time = Date.now()) {
     const date = new Date(time)
     const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
