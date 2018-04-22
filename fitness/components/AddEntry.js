@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View,TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View,TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import {
   getMetricMetaInfo,
   timeToString,
@@ -18,9 +18,10 @@ import {purple, white} from "../utils/colors";
 function SubmitBtn ({ onPress }) {
   return (
     <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
       onPress = {onPress}
     >
-      <Text>SUBMIT</Text>
+      <Text style={styles.submitBtnText}>SUBMIT</Text>
     </TouchableOpacity>
   )
 }
@@ -91,15 +92,15 @@ class AddEntry extends Component {
 
     if (this.props.alreadyLogged) {
       return (
-        <View>
+        <View style={styles.center}>
           <Ionicons
-            name={'ios-happy-outline'}
+            name={Platform.OS === 'ios' ? 'ios-happy-outline' : 'md-happy'}
             size={100}
           />
           <Text>
             You already logged your information for today
           </Text>
-          <TextButton onPress={this.reset}>
+          <TextButton style={{padding: 10}} onPress={this.reset}>
             Reset
           </TextButton>
         </View>
@@ -107,14 +108,14 @@ class AddEntry extends Component {
     }
 
     return (
-      <View>
+      <View style={styles.container}>
         <DateHeader date={(new Date()).toLocaleDateString()}/>
         {Object.keys(metaInfo).map((key) => {
           const { getIcon, type, ...rest } = metaInfo[key];
           const value = this.state[key];
 
           return (
-            <View key={key}>
+            <View key={key} style={styles.row}>
             {getIcon()}
             {type === 'slider'
               ? <MySlider
