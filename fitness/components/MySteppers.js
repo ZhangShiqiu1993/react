@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { FontAwesome, Entypo} from '@expo/vector-icons';
-import {purple, white} from "../utils/colors";
+import {purple, white, gray} from "../utils/colors";
 
 export default function MySteppers ({ max, unit, step, value, onIncrement, onDecrement }) {
   return (
@@ -26,7 +26,8 @@ export default function MySteppers ({ max, unit, step, value, onIncrement, onDec
           <TouchableOpacity style={styles.androidBtn} onPress={onIncrement}>
             <FontAwesome name='plus' size={30} color={white} />
           </TouchableOpacity>
-        </View>}
+        </View>
+      }
       <View style={styles.metricCounter}>
         <Text style={{fontSize: 24, textAlign: 'center'}}>{value}</Text>
         <Text style={{fontSize: 18, color: gray}}>{unit}</Text>
