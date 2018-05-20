@@ -6,10 +6,11 @@ import {Provider} from 'react-redux';
 import reducer from './reducers';
 import logger from 'redux-logger';
 import History from './components/History';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import {purple, white} from "./utils/colors";
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
+import EntryDetail from './components/EntryDetail';
 
 function MyStatusBar ({backgroundColor, ...props}) {
   return (
@@ -55,6 +56,21 @@ const Tabs = TabNavigator({
   }
 });
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  }
+});
+
 export default class App extends React.Component {
   render() {
     const store = createStore(
@@ -65,7 +81,8 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{flex:1}}>
           <MyStatusBar backgroundColor={purple} barStyle='light-content'/>
-          <Tabs />
+          {/*<Tabs />*/}
+          <MainNavigator/>
         </View>
       </Provider>
     )
