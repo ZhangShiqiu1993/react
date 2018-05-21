@@ -14,6 +14,7 @@ import {submitEntry, removeEntry} from "../utils/api";
 import { connect } from 'react-redux';
 import {addEntry} from "../actions";
 import {purple, white} from "../utils/colors";
+import { NavigationActions } from 'react-navigation';
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -70,8 +71,9 @@ class AddEntry extends Component {
 
     this.setState({run: 0, bike: 0, swim: 0, sleep: 0, eat: 0});
 
-    // Navigate to home
-
+    // this.toHome();
+    this.props.navigation.goBack();
+    
     submitEntry({key, entry});
 
   //  clear local notification
@@ -81,10 +83,14 @@ class AddEntry extends Component {
     const key = timeToString();
 
     this.props.dispatch(addEntry({[key]: getDailyReminderValue()}));
-
-  //  route to home
-
+  
+    this.props.navigation.goBack();
+  
     removeEntry(key)
+  };
+  
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({key: 'AddEntry'}))
   };
 
   render() {
