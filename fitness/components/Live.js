@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { Foundation } from '@expo/vector-icons';
 import { purple, white } from '../utils/colors';
-import {calculateDirection} from "../utils/helpers";
+import { Location, Permissions } from 'expo';
+import { calculateDirection } from '../utils/helpers';
 
 export default class Live extends Component {
   state = {
@@ -18,12 +19,12 @@ export default class Live extends Component {
           return this.setLocation()
         }
         
-        this.setState(() => ({ status }));
+        this.setState({ status });
       })
       .catch((error) => {
         console.warn('Error getting Location permission: ', error);
         
-        this.setState(() => ({ status: 'undetermined' }));
+        this.setState({ status: 'undetermined' });
       })
   }
   
