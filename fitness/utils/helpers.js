@@ -4,7 +4,7 @@ import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector
 import { red, orange, blue, lightPurp, pink, white } from "./colors";
 import { Notifications, Permissions } from 'expo';
 
-const NOTIFICATION_KEY = 'UdaciFitness:notifications';
+const NOTIFICATION_KEY = 'Fitness:notifications';
 
 export function getDailyReminderValue () {
   return {
