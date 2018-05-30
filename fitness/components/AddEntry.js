@@ -143,7 +143,6 @@ class AddEntry extends Component {
           )
         })}
         <SubmitBtn onPress={this.submit}/>
-        <Text>{JSON.stringify(this.state)}</Text>
       </View>
     )
   }
