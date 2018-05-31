@@ -9,7 +9,8 @@
 + [x] portfolio app
 + [x] expensify app
 + [x] readable
-+ [ ] fitness
++ [x] fitness
++ [ ] flashcards
 
 ---
 
