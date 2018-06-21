@@ -3,6 +3,22 @@ import { AsyncStorage } from 'react-native'
 export const STORAGE_KEY = 'flashcards:storage'
 
 
+export function getDecks() {
+	return initState;
+}
+
+export function getDeck(id) {
+	return initState[id];
+}
+
+export function saveDeckTitle(title) {
+
+}
+
+export function addCardToDeck(title, card) {
+
+}
+
 export const initState = {
 	React: {
 		title: 'React',
