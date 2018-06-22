@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
-import {createBottomTabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation'
+import {createBottomTabNavigator, createStackNavigator, DrawerNavigator} from 'react-navigation'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
-import {purple, white, blue} from "./utils/colors";
+import {purple, white, lightBlue} from "./utils/colors";
 import { Constants } from 'expo';
+import Deck from "./components/Deck";
 
 function MyStatusBar ({backgroundColor, ...props}) {
 	return (
@@ -14,7 +15,6 @@ function MyStatusBar ({backgroundColor, ...props}) {
 		</View>
 	)
 }
-
 
 const Tabs = createBottomTabNavigator({
 	DeckView: {
@@ -51,19 +51,31 @@ const Tabs = createBottomTabNavigator({
 	}
 })
 
-// const MainNavigator = StackNavigator({
-// 	Home: {
-// 		screen: Tabs,
-// 	},
-// });
+const MainNavigator = createStackNavigator({
+	Home: {
+		screen: Tabs,
+		navigationOptions: {
+			title: "FlashCards",
+		}
+	},
+	Deck: {
+		screen: Deck,
+		navigationOptions: {
+			headerTintColor: 'white',
+			headerStyle: {
+				backgroundColor: lightBlue
+			}
+		}
+	}
+});
 
 
 export default class App extends React.Component {
 	render() {
 		return (
 			<View style={{flex:1}}>
-				<MyStatusBar backgroundColor={blue} barStyle="light-content" />
-				<Tabs/>
+				<MyStatusBar backgroundColor={lightBlue} barStyle="light-content" />
+				<MainNavigator />
 			</View>
 		);
 	}
