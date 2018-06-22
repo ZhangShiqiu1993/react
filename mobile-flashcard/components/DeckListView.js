@@ -1,20 +1,35 @@
 import React, {Component} from 'react'
-import {View, Text, ScrollView, FlatList} from 'react-native'
+import {View, Text, FlatList, TouchableOpacity} from 'react-native'
 
 
 import {getDecks} from "../utils/helpers";
-import Deck from './Deck'
 
 export default class DeckListView extends Component {
+	renderItem = ({item}) => {
+		return (
+			<View>
+				<TouchableOpacity onPress={() => {
+					this.props.navigation.navigate(
+						'Deck',
+						{item: item}
+					)
+				}}>
+					<Text>{item.title}</Text>
+					<Text>{item.questions.length}</Text>
+				</TouchableOpacity>
+			</View>
+		)
+	}
+
+
 	render() {
 		const decks = getDecks();
 		return (
 			<View>
-				<Text>decks</Text>
 				<FlatList
 					data={Object.values(decks)}
-					renderItem={({item}) => <Deck {...item}/>}
-					keyExtractor={(item, index) => item.title}
+					renderItem={this.renderItem}
+					keyExtractor={({title}) => title}
 				/>
 			</View>
 		)
