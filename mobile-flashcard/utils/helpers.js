@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native'
 
 export const STORAGE_KEY = 'flashcards:storage'
 
