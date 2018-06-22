@@ -1,25 +1,17 @@
 import React, {Component} from 'react'
-import {View, Text} from 'react-native'
-import PropTypes from 'prop-types'
+import {View, Text, TouchableOpacity} from 'react-native'
 
 export default class Deck extends Component {
-	// static propTypes = {
-	// 	title: PropTypes.string.isRequired,
-	// 	questions: PropTypes.array.isRequired
-	// }
-
-	state = {
-		title: '',
-		questions: []
+	handlePress = () => {
+		console.log("click")
 	}
-
 
 	render() {
 		return (
-			<View>
-				<Text>{this.props.deck.title}</Text>
-				<Text>{this.props.deck.questions.length}</Text>
-			</View>
+			<TouchableOpacity onPress={this.handlePress}>
+				<Text>{this.props.title}</Text>
+				<Text>{this.props.questions.length}</Text>
+			</TouchableOpacity>
 		)
 	}
 }
