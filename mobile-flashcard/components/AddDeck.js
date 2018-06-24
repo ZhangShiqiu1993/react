@@ -1,58 +1,55 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, KeyboardAvoidingView} from 'react-native'
-import {submitEntry, removeEntry} from "../utils/api";
-import SubmitBtn from "./SubmitBtn";
+import {Text, TextInput, KeyboardAvoidingView} from 'react-native'
+import {saveDeck} from "../utils/api";
+import Button from "./Button";
 import {connect} from 'react-redux'
-import {addEntry} from "../actions/index";
+import {addDeck} from "../actions";
 
 class AddDeck extends Component {
 	state = {
-		input: ""
+		title: ""
 	}
 
 	submit = () => {
-		const {input} = this.state
-		if (!input) {
+		const {title} = this.state
+		if (!title) {
 			return
 		}
 
-		const title = input
-		const entry = {
+		const deck = {
 			title,
 			questions: []
 		}
 
-		this.props.dispatch(addEntry({
-			[title]: entry
-		}))
+		this.props.dispatch(addDeck({[title]: deck}))
 
-		this.setState({
-			input: ""
-		})
+		this.setState({title: ""})
 
-		submitEntry(title, entry)
+		saveDeck({[title]: deck})
 
-
+		this.props.navigation.goBack()
 
 	}
 
-	handleTextChange = (input) => {
-		this.setState({input})
+
+	handleTextChange = (title) => {
+		this.setState({title})
 	}
 
 	render() {
-		const {input} = this.state
+		const {title} = this.state
 
 		return (
 			<KeyboardAvoidingView behavior={'padding'}>
 				<Text>What is the title of your new deck?</Text>
 				<TextInput
 					style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-					value={input}
+					value={title}
 					onChangeText={this.handleTextChange}
 				/>
-				<SubmitBtn
+				<Button
 					onPress={this.submit}
+					text={"submit"}
 				/>
 			</KeyboardAvoidingView>
 		)
