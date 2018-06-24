@@ -10,8 +10,4 @@
 + [x] expensify app
 + [x] readable
 + [x] fitness
-+ [ ] flashcards
-
----
-
-# Udacity course
++ [x] flashcards
