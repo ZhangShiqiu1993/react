@@ -13,8 +13,11 @@ class AddCard extends Component {
 	}
 
 	submit = () => {
-		if (!this.state.answer || !this.state.question) {
-			return
+		if (!this.state.question) {
+			return alert("Please fill the question")
+		}
+		if (!this.state.answer ) {
+			return alert("Please fill the answer")
 		}
 
 		const title = this.props.navigation.state.params.title
@@ -47,13 +50,13 @@ class AddCard extends Component {
 
 		return (
 			<KeyboardAvoidingView behavior={'padding'}>
-				<Text>Question</Text>
+				<Text style={styles.inputText}>Question</Text>
 				<TextInput
 					style={styles.textInput}
 					value={question}
 					onChangeText={this.handleQuestionInput}
 				/>
-				<Text>Answer</Text>
+				<Text style={styles.inputText}>Answer</Text>
 				<TextInput
 					style={styles.textInput}
 					value={answer}
