@@ -11,3 +11,7 @@
 + [x] readable
 + [x] fitness
 + [x] flashcards
+
+---
+
+![react certificate](./certificate.jpg)
