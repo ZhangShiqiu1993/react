@@ -74,7 +74,6 @@ export const MainNavigator = createStackNavigator({
 	Quiz: {
 		screen: Quiz,
 		navigationOptions: {
-			title: "Quiz",
 			headerTintColor: 'white',
 			headerStyle: {
 				backgroundColor: lightBlue
