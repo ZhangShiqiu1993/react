@@ -4,6 +4,7 @@ import {saveDeck} from "../utils/api";
 import Button from "./Button";
 import {connect} from 'react-redux'
 import {addDeck} from "../actions";
+import {styles} from "./styles";
 
 class AddDeck extends Component {
 	state = {
@@ -13,7 +14,7 @@ class AddDeck extends Component {
 	submit = () => {
 		const {title} = this.state
 		if (!title) {
-			return
+			return alert("Please fill the title")
 		}
 
 		const deck = {
@@ -27,8 +28,11 @@ class AddDeck extends Component {
 
 		saveDeck({[title]: deck})
 
-		this.props.navigation.goBack()
-
+		// this.props.navigation.goBack()
+		this.props.navigation.navigate(
+			'Deck',
+			{title}
+		)
 	}
 
 
@@ -41,15 +45,15 @@ class AddDeck extends Component {
 
 		return (
 			<KeyboardAvoidingView behavior={'padding'}>
-				<Text>What is the title of your new deck?</Text>
+				<Text style={styles.inputText}>What is the title of your new deck?</Text>
 				<TextInput
-					style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+					style={styles.textInput}
 					value={title}
 					onChangeText={this.handleTextChange}
 				/>
 				<Button
 					onPress={this.submit}
-					text={"submit"}
+					text={"Create Deck"}
 				/>
 			</KeyboardAvoidingView>
 		)
