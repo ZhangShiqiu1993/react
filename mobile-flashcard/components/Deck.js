@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, Text} from 'react-native'
 import {connect} from 'react-redux'
 import Button from './Button'
-
+import {styles} from "./styles";
 
 class Deck extends Component {
 	static navigationOptions = ({navigation}) => {
@@ -29,14 +29,16 @@ class Deck extends Component {
 		const { deck } = this.props
 		return (
 			<View>
-				<Text>{deck.title}</Text>
-				<Text>{deck.questions.length}</Text>
+				<View style={styles.display}>
+					<Text style={styles.text}>{deck.title}</Text>
+					<Text style={styles.card}>{deck.questions.length} card(s)</Text>
+				</View>
 				<Button
 					text={"Add Card"}
 					onPress={this.handleAddCard}
 				/>
 				<Button
-					text={"Start Quiz"}
+					text={"Start a Quiz"}
 					onPress={this.handleQuiz}
 				/>
 			</View>
