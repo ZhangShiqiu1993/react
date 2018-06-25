@@ -30,7 +30,44 @@ export const styles = StyleSheet.create({
 	},
 	textInput: {
 		height: 40,
+		margin: 10,
+		padding: 10,
 		borderColor: 'gray',
-		borderWidth: 1
+		borderWidth: 1,
+		borderRadius: 15
+	},
+	display: {
+		paddingTop:10,
+		paddingHorizontal: 15,
+		paddingVertical: 25,
+		marginLeft:10,
+		marginRight:10,
+		alignItems:'center',
+		justifyContent: 'center'
+	},
+	showAnswer: {
+		color: 'red',
+		fontSize: 20
+	},
+	text: {
+		fontSize: 30,
+		textAlign:'center'
+	},
+	card: {
+		fontSize: 20,
+		marginLeft:10,
+		marginRight:10,
+		textAlign:'center'
+	},
+	inputText: {
+		fontSize: 20,
+		textAlign:'left',
+		marginLeft: 10,
+		marginRight: 10
+	},
+	reminder: {
+		fontSize:15,
+		textAlign:'left',
+		margin: 5
 	}
 });
