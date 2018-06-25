@@ -4,24 +4,24 @@ import {connect } from 'react-redux'
 import {AppLoading} from 'expo'
 import {getDecks} from "../utils/api";
 import {loadDecks} from "../actions";
+import {styles} from "./styles";
 
 class DeckList extends Component {
 	state = {
 		ready: false
 	}
 
-
 	renderItem = ({ item }) => {
 		return (
-			<View>
+			<View style={styles.display}>
 				<TouchableOpacity onPress={() => {
 					this.props.navigation.navigate(
 						'Deck',
 						{title: item.title}
 					)
 				}}>
-					<Text>{item.title}</Text>
-					<Text>{item.questions.length}</Text>
+					<Text style={styles.text}>{item.title}</Text>
+					<Text style={styles.card}>{item.questions.length} card(s)</Text>
 				</TouchableOpacity>
 			</View>
 		)
